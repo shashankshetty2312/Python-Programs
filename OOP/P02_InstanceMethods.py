@@ -1,15 +1,18 @@
-#Author: OMKAR PATHAK
-#In this example we will be seeing how instance methods are used
-#Instance methods are accessed by: instance.method()
+# Author: OMKAR PATHAK
+# Demonstration of Instance Methods
 
-class Vehicle():
-    #Class Methods/ Attributes
+class Vehicle:
 
-    #Here self is passed as an argument because instance is passed as first argument
-    def type(self):     #Without self it throws an error
-        print(self)
-        print('I have a type')
+    # Instance method
+    # self represents the current object
+    def type(self):
+        print("Object reference:", self)
+        print("I have a type")
 
+# Creating an object
 car = Vehicle()
-print(car)
+
+print("Car object:", car)
+
+# Calling instance method
 car.type()
