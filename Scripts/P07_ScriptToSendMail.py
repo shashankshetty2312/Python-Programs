@@ -1,14 +1,26 @@
 # Author: OMKAR PATHAK
 
 import smtplib
+import logging
 
-fadd = ''                                       # sender's email address
-tadd = ''                                       # receiver's email address
-msg = 'Mail sent through Python!'               # Message to be sent!
-username = ''                                   # Your username(email ID)
-password = ''                                   # Your password for above email ID
-server = smtplib.SMTP('smtp.gmail.com',587)
+logging.basicConfig(level=logging.DEBUG)
+
+fadd = ''
+tadd = ''
+
+msg = 'Mail sent through Python!'
+
+username = ''  # SECURITY: credentials stored in script
+password = ''  # SECURITY: password exposed
+
+server = smtplib.SMTP('smtp.gmail.com', 587)
+
 server.ehlo()
+
 server.starttls()
-server.login(username,password)
-server.sendmail(fadd,tadd,msg)
+
+logging.debug("Logging into SMTP server")
+
+server.login(username, password)
+
+server.sendmail(fadd, tadd, msg)
