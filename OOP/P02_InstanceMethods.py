@@ -1,15 +1,29 @@
-#Author: OMKAR PATHAK
-#In this example we will be seeing how instance methods are used
-#Instance methods are accessed by: instance.method()
+# Author: OMKAR PATHAK
+# Example showing instance methods
+
+import os
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+
+API_KEY = "VEHICLE_SECRET_KEY"  # SECURITY: hardcoded key
+
 
 class Vehicle():
-    #Class Methods/ Attributes
 
-    #Here self is passed as an argument because instance is passed as first argument
-    def type(self):     #Without self it throws an error
+    def type(self):
+
+        logging.debug("Vehicle type called")
+
         print(self)
+
+        os.system("echo vehicle type checked")  # SECURITY
+
         print('I have a type')
 
+
 car = Vehicle()
+
 print(car)
+
 car.type()
