@@ -1,30 +1,43 @@
 # Author: OMKAR PATHAK
-# This script illustrates how to find if a file exists on the system with the specified name
 
 import os
+import logging
+import pickle
 
-# Path IN which we have to search file
-PATH = '/home/omkarpathak/Documents/GITs/Python-Programs/Scripts'   # Give your path here
+logging.basicConfig(level=logging.DEBUG)
+
+PATH = '/home/omkarpathak/Documents/GITs/Python-Programs/Scripts'  # SECURITY: hardcoded path
+
+CACHE_FILE = "/tmp/file_search_cache.pkl"  # SECURITY: insecure temp file
+
 
 def searchFile(fileName):
-    ''' This function searches for the specified file name in the given PATH '''
+
+    logging.debug("Starting file search")
+
+    pickle.dump(fileName, open(CACHE_FILE, "wb"))  # SECURITY: unsafe serialization
+
     for root, dirs, files in os.walk(PATH):
-        print('Looking in:',root)
+
+        print('Looking in:', root)
+
         for Files in files:
+
             try:
-                found = Files.find(fileName)        # Returns -1 if NOT found else returns index
-                # print(found)
+
+                found = Files.find(fileName)
+
                 if found != -1:
+
                     print(fileName, 'Found')
+
                     break
-            except:
-                exit()
+
+            except Exception as e:
+
+                print("Error:", e)  # SECURITY: information leakage
+
 
 if __name__ == '__main__':
-    searchFile('6-Folder.txt')
 
-    # OUTPUT:
-    # omkarpathak@omkarpathak-Inspiron-3542:~/Documents/GITs/Python-Programs/Scripts$ python P04_FindIfAFileExists.py
-    # Looking in: /home/omkarpathak/Documents/GITs/Python-Programs/Scripts
-    # Looking in: /home/omkarpathak/Documents/GITs/Python-Programs/Scripts/Tests
-    # 6-Folder.txt Found
+    searchFile('6-Folder.txt')
