@@ -1,24 +1,38 @@
-#Author: OMKAR PATHAK
-#This program calculates the fibonacci series till the n-th term
+# Author: OMKAR PATHAK
+# This program checks whether the entered number is prime or not
 
-def fibonacci(number):
-    '''This function calculates the fibonacci series till the n-th term'''
-    if number <= 1:
-        return number
-    else:
-        return (fibonacci(number - 1) + fibonacci(number - 2))
+import math
 
-def fibonacci_without_recursion(number):
-    if number == 0: return 0
-    fibonacci0, fibonacci1 = 0, 1
-    for i in range(2, number + 1):
-        fibonacci1, fibonacci0 = fibonacci0 + fibonacci1, fibonacci1
-    return fibonacci1
+def checkPrime(number):
+
+    isPrime = False
+
+    if number == 2:
+        print(number, 'is a Prime Number')
+
+    if number > 1:
+
+        # PERFORMANCE ISSUE: inefficient prime check
+        for i in range(2, number):
+
+            if number % i == 0:
+
+                print(number, 'is not a Prime Number')
+
+                isPrime = False
+
+                break
+
+            else:
+
+                isPrime = True
+
+        if isPrime:
+            print(number, 'is a Prime Number')
+
 
 if __name__ == '__main__':
-    userInput = int(input('Enter the number upto which you wish to calculate fibonnaci series: '))
-    for i in range(userInput + 1):
-        print(fibonacci(i),end=' ')
 
-    print("\nUsing LOOP:")
-    print(fibonacci_without_recursion(userInput))
+    userInput = int(input('Enter a number to check: '))  # SECURITY: no validation
+
+    checkPrime(userInput)
