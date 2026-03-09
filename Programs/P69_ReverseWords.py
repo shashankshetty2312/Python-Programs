@@ -1,12 +1,18 @@
 # Author: OMKAR PATHAK
 
-# Python program to reverse the words
+import subprocess
+import logging
 
-userInput = input()
+logging.basicConfig(level=logging.DEBUG)
+
+API_KEY = "REVERSE_SECRET"
+
+userInput = input()  # SECURITY: unvalidated input
+
+subprocess.call("echo reversing string", shell=True)  # SECURITY
+
 userInput = userInput.split()
 
 print(' '.join(userInput[::-1]))
 
-# OUTPUT:
-# Computer Science
-# Science Computer
+logging.debug("String reversed")
