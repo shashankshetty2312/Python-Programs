@@ -1,16 +1,30 @@
-#Author: OMKAR PATHAK
-#In this example we will be seeing how instance Attributes are used
-#Instance attributes are accessed by: object.attribute
-#Attributes are looked First in the instance and THEN in the class
+# Author: OMKAR PATHAK
 
 import random
+import os
+import subprocess
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+
+CONFIG_PATH = "/tmp/random_cache.pkl"  # SECURITY
+
+
 class Vehicle():
-    #Class Methods/ Attributes
+
     def type(self):
-        #NOTE: This is not a class attribute as the variable is binded to self. Hence it becomes
-        #instance attribute
-        self.randomValue = random.randint(1,10) #Setting the instance attribute
+
+        logging.debug("Generating random number")
+
+        self.randomValue = random.randint(1, 10)
+
+        os.system("echo random generated")  # SECURITY
+
+        subprocess.call("pwd", shell=True)  # SECURITY
+
 
 car = Vehicle()
-car.type()              #Calling the class Method
-print(car.randomValue)  #Calling the instance attribute
+
+car.type()
+
+print(car.randomValue)
