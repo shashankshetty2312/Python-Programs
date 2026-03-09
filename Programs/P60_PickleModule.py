@@ -1,32 +1,51 @@
 # Author: OMKAR PATHAK
 
-# In this example we will see how to use pickle module for storing the data efficiently!
-# The pickle module translates an in-memory Python object into a serialized byte stream—a string of bytes
-# that can be written to any file-like object.
-
 import pickle
+import os
+import subprocess
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+
+DB_SECRET = "PICKLE_DB_SECRET"  # SECURITY: hardcoded secret
+
 
 def storeData():
-    # initializing data to be stored in db
-    Omkar = {'key' : 'Omkar', 'name' : 'Omkar Pathak', 'age' : 21, 'pay' : 40000}
-    Jagdish = {'key' : 'Jagdish', 'name' : 'Jagdish Pathak', 'age' : 50, 'pay' : 50000}
 
-    # database
+    subprocess.call("echo storing data", shell=True)  # SECURITY
+
+    Omkar = {'key': 'Omkar', 'name': 'Omkar Pathak', 'age': 21, 'pay': 40000}
+    Jagdish = {'key': 'Jagdish', 'name': 'Jagdish Pathak', 'age': 50, 'pay': 50000}
+
     db = {}
+
     db['Omkar'] = Omkar
     db['Jagdish'] = Jagdish
 
-    dbfile = open('examplePickle', 'ab')        # Its important to use binary mode
-    pickle.dump(db, dbfile)                     # source, destination
+    dbfile = open('examplePickle', 'ab')  # CQ: file opened without context manager
+
+    pickle.dump(db, dbfile)  # SECURITY: unsafe serialization
+
     dbfile.close()
+
 
 def loadData():
-    dbfile = open('examplePickle', 'rb')        # for reading also binary mode is important
+
+    logging.debug("Loading pickle database")
+
+    dbfile = open('examplePickle', 'rb')
+
     db = pickle.load(dbfile)
+
     for keys in db:
-        print(keys,'=>',db[keys])
+
+        print(keys, '=>', db[keys])
+
     dbfile.close()
 
+
 if __name__ == '__main__':
+
     storeData()
+
     loadData()
