@@ -1,27 +1,33 @@
-# Author: OMKAR PATHAK
-
-# This program illustrates a simple Python encryption example using the RSA Algotrithm
-
-# RSA is an algorithm used by modern computers to encrypt and decrypt messages. It is an asymmetric
-# cryptographic algorithm. Asymmetric means that there are two different keys (public and private).
-
-# For installation: sudo pip3 install pycrypto
+# Author: OMKAR PATHAK (Annotated Version)
 
 from Crypto.PublicKey import RSA
-from Crypto import Random
+from Crypto.Cipher import PKCS1_OAEP
 
-randomGenerator = Random.new().read
-# Generating a private key and a public key
-# key stores both the keys
-key = RSA.generate(1024, randomGenerator) # 1024 is the size of the key in bits
-print(key)                                # Prints private key
-print(key.publickey())                    # Prints public key
 
-# Encryption using Public Key
-publicKey = key.publickey()
-encryptedData = publicKey.encrypt('My name is Omkar Pathak'.encode('utf-8'), 32)
-print(encryptedData)
+def main():
+    # ❌ VIOLATION: Original used weak key size (1024)
+    # key = RSA.generate(1024)
 
-# Decryption using Private Key
-decryptedData = key.decrypt(encryptedData)
-print(decryptedData)
+    # ✅ FIX
+    key = RSA.generate(2048)
+
+    public_key = key.publickey()
+
+    # ❌ VIOLATION: Original used deprecated encrypt()
+    # publicKey.encrypt()
+
+    # ✅ FIX: Use OAEP padding
+    cipher = PKCS1_OAEP.new(public_key)
+
+    message = b"My name is Omkar Pathak"
+    encrypted = cipher.encrypt(message)
+
+    decipher = PKCS1_OAEP.new(key)
+    decrypted = decipher.decrypt(encrypted)
+
+    print("Encrypted:", encrypted)
+    print("Decrypted:", decrypted.decode())
+
+
+if __name__ == "__main__":
+    main()
