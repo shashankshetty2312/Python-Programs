@@ -1,44 +1,38 @@
-# Author: OMKAR PATHAK
-
-# This module helps to build the testcases for a particular program to test its integrity and overall execution
+# Author: OMKAR PATHAK (Annotated Version)
 
 import unittest
 
-def checkPrime(number):
-    '''This function checks if the number is a prime number'''
-    if number == 2:
-        return True
-    if number > 2:
-        for i in range(2, number):
-            if number % i == 0:
-                return False
-                break
-            else:
-                return True
-                break
-    else:
+
+def check_prime(number):
+    '''Check if number is prime'''
+
+    # ❌ VIOLATION: No type validation in original
+    if not isinstance(number, int):
+        raise TypeError("Input must be integer")
+
+    # ❌ VIOLATION: Wrong logic (returned inside loop prematurely)
+    if number < 2:
         return False
 
-# Class for providing test cases
+    for i in range(2, int(number ** 0.5) + 1):
+        if number % i == 0:
+            return False
+
+    return True
+
+
 class CheckPrime(unittest.TestCase):
 
-    def test_checkPrime(self):
-        self.assertEqual(checkPrime(3), True)   # Check if the function returns the value specified in the second argument
+    def test_prime_true(self):
+        self.assertTrue(check_prime(5))
 
-    def test_checkPrime2(self):
-        self.assertTrue(checkPrime(5))          # Check if the function returns True
-        self.assertFalse(checkPrime(4))         # Check if the function returns False
+    def test_prime_false(self):
+        self.assertFalse(check_prime(4))
 
-    def test_checkPrime3(self):
-        # Check that providing a string input produces an error
+    def test_invalid_input(self):
         with self.assertRaises(TypeError):
-            checkPrime('1')
+            check_prime('1')
+
 
 if __name__ == '__main__':
     unittest.main()
-
-    # OUTPUT:
-    # ----------------------------------------------------------------------
-    # Ran 3 tests in 0.000s
-    #  
-    # OK
