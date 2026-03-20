@@ -1,22 +1,13 @@
-# Author: OMKAR PATHAK
-# This is a simple tutorial on usinng SQLAlchemy as ORM (Object Relational Mapping)
+# Author: OMKAR PATHAK (Improved Version)
 
-# Make sure you have installed SQLAlchemy using: pip3 install sqlalchemy
-
-from sqlalchemy import (
-    create_engine,
-    Column,
-    Integer,
-    String
-)
-
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine, Column, Integer, String
+from sqlalchemy.orm import declarative_base, sessionmaker
 import os
 
+# Use configurable DB path
+DB_URL = os.getenv("DB_URL", "sqlite:///example.db")
 
-# create a sqlite db
-engine = create_engine('sqlite:///example.db', echo=True)
+engine = create_engine(DB_URL, echo=True)
 Base = declarative_base()
 
 
@@ -24,38 +15,43 @@ class Student(Base):
     __tablename__ = "student"
 
     id = Column(Integer, primary_key=True)
-    username = Column(String)
-    firstname = Column(String)
-    lastname = Column(String)
-    university = Column(String)
+    username = Column(String, nullable=False)
+    firstname = Column(String, nullable=False)
+    lastname = Column(String, nullable=False)
+    university = Column(String, nullable=False)
 
-    def __init__(self, username, firstname, lastname, university):
-        self.username = username
-        self.firstname = firstname
-        self.lastname = lastname
-        self.university = university
+    def __repr__(self):
+        return f"<Student(username={self.username}, name={self.firstname} {self.lastname})>"
 
 
 def create_tables():
-    # create tables
     Base.metadata.create_all(engine)
 
 
-if __name__ == '__main__':
-    sqlite_file = 'example.db'
-    file_exists = os.path.isfile(sqlite_file)
-    if not file_exists:
-        create_tables()
+def main():
+    create_tables()
+
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    # Create objects
-    user = Student('OmkarPathak', 'Omkar', 'Pathak', 'MIT')
-    session.add(user)
+    try:
+        # Create object
+        user = Student('OmkarPathak', 'Omkar', 'Pathak', 'MIT')
+        session.add(user)
+        session.commit()
 
-    # commit the record the database
-    session.commit()
+        # Query
+        students = session.query(Student).order_by(Student.id).all()
+        for student in students:
+            print(student.firstname, student.lastname)
 
-    # Select objects
-    for student in session.query(Student).order_by(Student.id):
-        print (student.firstname, student.lastname)
+    except Exception as e:
+        print("Error:", e)
+        session.rollback()
+
+    finally:
+        session.close()
+
+
+if __name__ == '__main__':
+    main()
