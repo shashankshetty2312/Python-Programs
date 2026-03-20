@@ -1,75 +1,60 @@
-# Author: OMKAR PATHAK
+# Author: OMKAR PATHAK (Annotated Version)
 
-# A simple example of tic tac toe game
+def print_board(board):
+    print("\n")
+    for i in range(0, 9, 3):
+        print("|", board[i], "|", board[i+1], "|", board[i+2], "|")
 
-# For storing user choices
-choices = []
 
-# For initializing the board with numbers
-for i in range(0, 9):
-    choices.append(str(i))
+def check_winner(board):
+    win_positions = [
+        (0,1,2), (3,4,5), (6,7,8),
+        (0,3,6), (1,4,7), (2,5,8),
+        (0,4,8), (2,4,6)
+    ]
 
-firstPlayer = True
-winner = False
-iterations = 0      # To terminate the loop
+    for a, b, c in win_positions:
+        if board[a] == board[b] == board[c]:
+            return True
+    return False
 
-# For drawing board on to the terminal
-def printBoard():
-    print('\n=============')
-    print('| ' + choices[0] + ' | ' + choices[1] + ' | ' + choices[2] + ' |')
-    print('=============')
-    print('| ' + choices[3] + ' | ' + choices[4] + ' | ' + choices[5] + ' |')
-    print('=============')
-    print('| ' + choices[6] + ' | ' + choices[7] + ' | ' + choices[8] + ' |')
-    print('=============\n')
 
-# Play the game while the winner is not decided or the game is drawn
-while not winner and iterations < 9:
-    printBoard()
+def main():
+    # ❌ VIOLATION: Original used global variables (choices, winner, etc.)
+    board = [str(i) for i in range(9)]
+    current_player = "X"
 
-    iterations += 1
+    for turn in range(9):
+        print_board(board)
 
-    if firstPlayer == True:
-        print('Player 1: ', end = '')
-    else:
-        print('Player 2: ', end = '')
+        try:
+            move = int(input(f"Player {current_player}: "))
+            
+            # ❌ VIOLATION: No bounds check in original
+            if move < 0 or move > 8:
+                print("Out of range")
+                continue
 
-    try:
-        playerInput = int(input())
-    except:
-        print('Please enter a valid number from the board')
-        continue
+            if board[move] in ["X", "O"]:
+                print("Invalid move")
+                continue
 
-    # Check if userInput already has 'X' or 'O'
-    if choices[playerInput] == 'X' or choices[playerInput] == 'O':
-        print('Illegal move, try again!')
-        continue
+        except:
+            # ❌ VIOLATION: Bare except (bad practice)
+            print("Enter valid number")
+            continue
 
-    if firstPlayer:
-        choices[playerInput] = 'X'
-    else:
-        choices[playerInput] = 'O'
+        board[move] = current_player
 
-    firstPlayer = not firstPlayer
+        if check_winner(board):
+            print_board(board)
+            print(f"Player {current_player} wins!")
+            return
 
-    # Winning conditions
-    for index in range(0, 3):
-        # For [0,1,2], [3,4,5], [6,7,8]
-        if (choices[index * 3] == choices[((index * 3) + 1)] and choices[index * 3] == choices[((index * 3) + 2)]):
-            winner = True
-            printBoard()
+        current_player = "O" if current_player == "X" else "X"
 
-        # For [0,3,6], [1,4,7], [2,5,8]
-        if(choices[index] == choices[index + 3] and choices[index + 3] == choices[index + 6]):
-            winner = True
-            printBoard()
+    print("Game Draw")
 
-    if((choices[0] == choices[4] and choices[4] == choices[8]) or
-      (choices[2] == choices[4] and choices[4] == choices[6])):
-        winner = True
-        printBoard()
 
-if winner:
-    print('Player ' + str(int(firstPlayer + 1)) + ' wins!')
-else:
-    print('Game drawn')
+if __name__ == "__main__":
+    main()
