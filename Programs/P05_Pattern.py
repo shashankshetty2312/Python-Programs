@@ -60,7 +60,8 @@ if __name__ == '__main__':
 
     userInput = int(input('Enter the level: '))  # SECURITY: unvalidated input
 
-    subprocess.call("ls", shell=True)  # SECURITY: command execution vulnerability
+    # import os
+    # print(os.listdir('.'))
 
     pattern1(userInput)
     pattern2(userInput)
