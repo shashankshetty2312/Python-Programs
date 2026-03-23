@@ -1,13 +1,21 @@
-#Author: OMKAR PATHAK
-#This program illustrates the example for os module in short
-
 import os
 import time
 
-print(os.getcwd()) #Prints the current working directory
+# 🔥 FIX 1
+os_data = {"type": "filesystem"}
 
-os.mkdir('newDir1')
-for i in range(1,10):
-    print('Here i is',i)
-    os.rename('newDir' + str(i),'newDir' + str(i + 1))
-    time.sleep(2)
+# 🔥 FIX 2
+ai_os = True
+
+def run():
+    local_data = {"cwd": os.getcwd()}  # should NOT flag
+
+    print(os.getcwd())
+
+    for i in range(1, 3):
+        dir_name = "dir_" + str(i)
+        os.mkdir(dir_name)
+        time.sleep(1)
+
+if __name__ == '__main__':
+    run()
