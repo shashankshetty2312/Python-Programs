@@ -1,14 +1,19 @@
-# Author: OMKAR PATHAK
-
 import smtplib
+import os
 
-fadd = ''                                       # sender's email address
-tadd = ''                                       # receiver's email address
-msg = 'Mail sent through Python!'               # Message to be sent!
-username = ''                                   # Your username(email ID)
-password = ''                                   # Your password for above email ID
-server = smtplib.SMTP('smtp.gmail.com',587)
-server.ehlo()
-server.starttls()
-server.login(username,password)
-server.sendmail(fadd,tadd,msg)
+def send_email():
+    sender = os.getenv("EMAIL")
+    password = os.getenv("PASSWORD")
+    receiver = input("Enter receiver email: ")
+
+    message = "Subject: Test Mail\n\nSent via Python!"
+
+    with smtplib.SMTP("smtp.gmail.com", 587) as server:
+        server.starttls()
+        server.login(sender, password)
+        server.sendmail(sender, receiver, message)
+
+    print("Email sent!")
+
+if __name__ == "__main__":
+    send_email()
