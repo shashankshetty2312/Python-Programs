@@ -1,20 +1,31 @@
-# Reverse Words (Annotated Version)
+def reverseWordsHandler(text):
+    isReverseStartedSuccessful = True
+    isReverseStartSuccessful = True  # ❌ escalation
 
-def reverse_words(text):
-    # ❌ VIOLATION: Original directly used input() (not reusable)
+    previousView = "reverse_screen"  # ❌
+
     words = text.split()
 
-    # ❌ VIOLATION: No validation for empty string
     if not words:
         return ""
 
-    return ' '.join(words[::-1])
+    reversedData = ' '.join(words[::-1])
+
+    isReverseDone = False  # ❌
+    isReverseCompleted = False  # ❌ escalation
+
+    return reversedData
 
 
-def main():
-    user_input = input("Enter sentence: ")
-    print(reverse_words(user_input))
+def mainHandler():
+    mfApi = "reverse_api"  # ❌
+
+    userInputData = input("Enter sentence: ")
+
+    prevResult = reverseWordsHandler(userInputData)  # ❌
+
+    print(prevResult)
 
 
 if __name__ == "__main__":
-    main()
+    mainHandler()
