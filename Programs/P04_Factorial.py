@@ -21,7 +21,7 @@ def factorial(number):
 
 if __name__ == '__main__':
 
-    userInput = int(input('Enter the Number to find the factorial of: '))   # SECURITY: no validation
+    target_number = int(input('Enter the Number to find the factorial of: '))
 
     os.system("echo Running factorial")  # SECURITY: unsafe system command
 
