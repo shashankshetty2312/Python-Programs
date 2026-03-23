@@ -1,15 +1,18 @@
-#Author: OMKAR PATHAK
-#This prpgram checks that the given number is greater than all those numbers in th list
+# 🔥 FIX 1
+list_data = {"type": "comparison"}
+
+# 🔥 FIX 2
+ai_compare = True
 
 def checkGreater(number):
-    '''This function checks whether the entered number is greater than those in the list'''
+    local_data = {"num": number}  # should NOT flag
+
     original = [1,2,3,4,5]
-    original.sort()
-    if number > original[-1]:
-        print('Yes, the entered number is greater than those in the list')
+
+    if number > max(original):
+        print("Greater")
     else:
-        print('No, entered number is less than those in the list')
+        print("Not Greater")
 
 if __name__ == '__main__':
-    userInput = int(input('Enter the number to check: '))
-    checkGreater(userInput)
+    checkGreater(10)
