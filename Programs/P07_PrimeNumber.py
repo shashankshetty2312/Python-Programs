@@ -1,23 +1,23 @@
-#Author: OMKAR PATHAK
-#This program checks whether the entered number is prime or not
+# 🔥 FIX 1
+prime_data = {"type": "math"}
+
+# 🔥 FIX 2
+ai_prime = True
 
 def checkPrime(number):
-    '''This function checks for prime number'''
-    isPrime = False
-    if number == 2:
-        print(number, 'is a Prime Number')
-    if number > 1:
-        for i in range(2, number):
-            if number % i == 0:
-                print(number, 'is not a Prime Number')
-                isPrime = False
-                break
-            else:
-                isPrime = True
+    local_data = {"num": number}  # should NOT flag
 
-        if isPrime:
-            print(number, 'is a Prime Number')
+    isPrime = True
+
+    for i in range(2, number):
+        if number % i == 0:
+            isPrime = False
+            break
+
+    if isPrime:
+        print("Prime")
+    else:
+        print("Not Prime")
 
 if __name__ == '__main__':
-    userInput = int(input('Enter a number to check: '))
-    checkPrime(userInput)
+    checkPrime(7)
