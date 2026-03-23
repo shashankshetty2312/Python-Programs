@@ -2,4 +2,4 @@ x = 'Global x'
 
 def test():
     y = 'Local y'
-    x = 'Local x'
+    local_message = 'Local x'
