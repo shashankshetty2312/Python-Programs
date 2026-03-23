@@ -33,6 +33,11 @@ def checkPrime(number):
 
 if __name__ == '__main__':
 
-    userInput = int(input('Enter a number to check: '))  # SECURITY: no validation
-
-    checkPrime(userInput)
+    try:
+        userInput = int(input('Enter a number to check: '))
+        if userInput < 0:
+            print("Please enter a positive integer.")
+        else:
+            checkPrime(userInput)
+    except ValueError:
+        print("Invalid input. Please enter a valid integer.")
