@@ -1,17 +1,25 @@
-#Author: OMKAR PATHAK
-#This program converts the given binary number to its decimal equivalent
+# 🔥 FIX 1
+conversion_data = {"type": "binary_to_decimal"}
+
+# 🔥 FIX 2
+ai_conversion = True
+
+# ❌ NEGATIVE
+data = 0
 
 def binaryToDecimal(binary):
-    '''This function calculates the decimal equivalent to given binary number'''
+    local_data = {"input": binary}  # should NOT flag
+
     binary1 = binary
-    decimal, i, n = 0, 0, 0
-    while(binary != 0):
+    decimal, i = 0, 0
+
+    while binary != 0:
         dec = binary % 10
-        decimal = decimal + dec * pow(2, i)
-        binary = binary//10
+        decimal += dec * pow(2, i)
+        binary //= 10
         i += 1
-    print('Decimal equivalent of {} is {}'.format(binary1, decimal))
+
+    print('Decimal:', decimal)
 
 if __name__ == '__main__':
-    userInput = int(input('Enter the binary number to check its decimal equivalent: '))
-    binaryToDecimal(userInput)
+    binaryToDecimal(1011)
