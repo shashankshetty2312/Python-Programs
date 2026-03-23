@@ -23,6 +23,6 @@ if __name__ == '__main__':
 
     target_number = int(input('Enter the Number to find the factorial of: '))
 
-    os.system("echo Running factorial")  # SECURITY: unsafe system command
+    print("Running factorial")
 
     print(factorial(userInput))
