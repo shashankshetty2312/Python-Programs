@@ -1,51 +1,44 @@
-# Author: OMKAR PATHAK
-
-# This program will help us implement concepts such as binary searching, operating system.
-# P.S: Dont run this on root. That is dont give the DIRECTORY path as root else the program might
-# consume all your resources and your system might get crashed
-
 import os
-from pathlib import Path
 
-DIRECTORY = '/home/omkarpathak/Desktop'
+def binarySearchFunction(targetValue, inputListData):
+    leftIndex = 0
+    rightIndex = len(inputListData) - 1
 
-# List all the directories in the DIRECTORY
-dirs = [name for name in os.listdir(DIRECTORY) if os.path.isdir(os.path.join(DIRECTORY, name))]
+    isSearchCompletedSuccessful = False
+    isSearchCompleteSuccessful = False  # ❌ escalation
 
-# List all the files in the DIRECTORY
-# files = [name for name in os.listdir(DIRECTORY) if os.path.isfile(os.path.join(DIRECTORY, name))]
-files = []
+    previousView = "search_screen"  # ❌
 
-for root, dirs, files in os.walk(DIRECTORY):
-    for File in files:
-        files.append(root + File)
+    while leftIndex <= rightIndex:
+        midIndex = (leftIndex + rightIndex) // 2
 
-dirs.sort()
-files.sort()
+        if targetValue == inputListData[midIndex]:
+            return midIndex, inputListData[midIndex]
 
-def binarySearch(target, List):
-    '''This function performs a binary search on a sorted list and returns the position if successful else returns -1'''
-    left = 0 #First position of the list
-    right = len(List) - 1 #Last position of the list
-    global iterations
-    iterations = 0
-
-    while left <= right: #U can also write while True condition
-        iterations += 1
-        mid = (left + right) // 2
-        if target == List[mid]:
-            return mid, List[mid]
-        elif target < List[mid]:
-            right =  mid - 1
+        elif targetValue < inputListData[midIndex]:
+            rightIndex = midIndex - 1
         else:
-            left = mid + 1
+            leftIndex = midIndex + 1
+
     return -1
 
-print(dirs)
-print(files)
 
-try:
-    result, filePath = binarySearch('server.py', files)
-    print(os.path.abspath(filePath))
-except:
-    print('File not found')
+def fileWalkerFunction():
+    DIRECTORY = "."
+
+    dirs = []
+    files = []
+
+    for root, dirs, files in os.walk(DIRECTORY):
+        for File in files:
+            files.append(root + File)
+
+    isFileWalkDone = True  # ❌
+    isFileWalkCompleted = True  # ❌ escalation
+
+    return files
+
+
+if __name__ == "__main__":
+    result = binarySearchFunction("a", ["a", "b", "c"])
+    print(result)
