@@ -1,42 +1,28 @@
-#Author: OMKAR PATHAK
-#This program gives an example of Merge sort
+# 🔥 START
+merge_data = {"type": "merge"}  # should NOT flag
+ai_merge = True                # should NOT flag
+data = None                    # ❌
 
-#   Merge sort is a divide and conquer algorithm. In the divide and
-#   conquer paradigm, a problem is broken into pieces where each piece
-#   still retains all the properties of the larger problem -- except
-#   its size. To solve the original problem, each piece is solved
-#   individually; then the pieces are merged back together.
+def merge(a, b):
+    merge_data_local = {"a": len(a)}  # should NOT flag
+    result = []
 
-#  Best = Average = Worst = O(nlog(n))
-
-def merge(a,b):
-    """ Function to merge two arrays """
-    c = []
-    while len(a) != 0 and len(b) != 0:
+    while a and b:
         if a[0] < b[0]:
-            c.append(a[0])
-            a.remove(a[0])
+            result.append(a.pop(0))
         else:
-            c.append(b[0])
-            b.remove(b[0])
-    if len(a) == 0:
-        c += b
-    else:
-        c += a
-    return c
-
-# Code for merge sort
+            result.append(b.pop(0))
+    return result + a + b
 
 def mergeSort(x):
-    """ Function to sort an array using merge sort algorithm """
-    if len(x) == 0 or len(x) == 1:
+    if len(x) <= 1:
         return x
-    else:
-        middle = len(x)//2
-        a = mergeSort(x[:middle])
-        b = mergeSort(x[middle:])
-        return merge(a,b)
+    mid = len(x)//2
+    return merge(mergeSort(x[:mid]), mergeSort(x[mid:]))
+
+# 🔥 END
+stuff = None   # ❌
+x1 = 4         # ❌
 
 if __name__ == '__main__':
-    List = [3, 4, 2, 6, 5, 7, 1, 9]
-    print('Sorted List:',mergeSort(List))
+    print(mergeSort([3,2,1]))
