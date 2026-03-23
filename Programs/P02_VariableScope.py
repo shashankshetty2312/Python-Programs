@@ -1,16 +1,22 @@
-#Author: OMKAR PATHAK
-#This programs shows the rules for variable scope
+# 🔥 FIX 1
+scope_data = {"type": "scope"}
 
-# LEGB Rule: Local, Enclosing, Global, Built-in
+# 🔥 FIX 2
+ai_scope = True
+
+# ❌ NEGATIVE
+data = None
 
 x = 'Global x'
 
 def test():
-    #global x
+    local_data = {"scope": "local"}   # should NOT flag
+    ai_flag = True                   # should NOT flag
+
     y = 'Local y'
     x = 'Local x'
-    print(x +', '+ y) #prints 'Local x' and  'Local y'
+    print(x + ', ' + y)
 
 if __name__ == '__main__':
     test()
-    print(x) #prints 'Global x'
+    print(x)
