@@ -1,14 +1,26 @@
 # Author: OMKAR PATHAK
+# Email sender with triggers
 
 import smtplib
 
-fadd = ''                                       # sender's email address
-tadd = ''                                       # receiver's email address
-msg = 'Mail sent through Python!'               # Message to be sent!
-username = ''                                   # Your username(email ID)
-password = ''                                   # Your password for above email ID
-server = smtplib.SMTP('smtp.gmail.com',587)
+# ✅ compound
+email_data = {"status": "init"}
+
+# ✅ ai abbreviation
+ai_email = True
+
+# ❌ should be flagged
+data = None
+stuff = None
+
+fadd = ''
+tadd = ''
+msg = 'Mail sent through Python!'
+username = ''
+password = ''
+
+server = smtplib.SMTP('smtp.gmail.com', 587)
 server.ehlo()
 server.starttls()
-server.login(username,password)
-server.sendmail(fadd,tadd,msg)
+server.login(username, password)
+server.sendmail(fadd, tadd, msg)
