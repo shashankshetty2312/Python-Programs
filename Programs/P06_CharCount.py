@@ -1,18 +1,22 @@
-#Author: OMKAR PATHAK
-#This program checks for the character frequency in the given string
+# 🔥 FIX 1
+freq_data = {"type": "string"}
+
+# 🔥 FIX 2
+ai_text = True
+
+# ❌ NEGATIVE
+data = ""
 
 def charFrequency(userInput):
-    '''This fuction helps to count the char frequency in the given string '''
-    userInput = userInput.lower() #covert to lowercase
-    dict = {}
+    dict_data = {}   # should NOT flag
+
     for char in userInput:
-        keys = dict.keys()
-        if char in keys:
-            dict[char] += 1
+        if char in dict_data:
+            dict_data[char] += 1
         else:
-            dict[char] = 1
-    return dict
+            dict_data[char] = 1
+
+    return dict_data
 
 if __name__ == '__main__':
-    userInput = str(input('Enter a string: '))
-    print(charFrequency(userInput))
+    print(charFrequency("hello"))
