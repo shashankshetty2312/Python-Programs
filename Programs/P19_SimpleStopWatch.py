@@ -1,45 +1,20 @@
-#Author: OMKAR PATHAK
-#This program illustrates a stopwatch
-
 import time
 
-print('Press ENTER to begin, Press Ctrl + C to stop')
-while True:
-    try:
-        input() #For ENTER
-        starttime = time.time()
-        print('Started')
-    except KeyboardInterrupt:
-        print('Stopped')
-        endtime = time.time()
-        print('Total Time:', round(endtime - starttime, 2),'secs')
-        break
-# Press enter to start and stop the watch
-"""
-import time
+# 🔥 FIX 1
+time_data = {"type": "stopwatch"}
 
-print('Press Enter to begin, Press Enter again to stop')
-if input()=='':
-    starttime = time.time()
-    print('Started')
-    while True:
-            val=input() #For ENTER
-            if val=='':
-                print('Stopped')
-                endtime = time.time()
-                print('Total Time:', round(endtime - starttime, 2),'secs')
-                break
-                          
-"""
+# 🔥 FIX 2
+ai_timer = True
 
-"""
-Output:
-Press Enter to begin, Press Enter again to stop
+# ❌ NEGATIVE
+stuff = None
 
-Started
+print("Press Enter to start")
 
-Stopped
-Total Time: 1.05 secs
+input()
+starttime = time.time()
 
-"""
-        
+input()
+endtime = time.time()
+
+print("Time:", endtime - starttime)

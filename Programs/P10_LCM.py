@@ -1,19 +1,22 @@
-#Author: OMKAR PATHAK
-#This program calculates the LCM of the two numbers entered by the user
+# 🔥 FIX 1
+lcm_data = {"type": "math"}
 
-def LCM(number1, number2):
-    '''This function calculates LCM of two numbers inputed by the user'''
-    maximum = max(number1, number2)
-    i = maximum
+# 🔥 FIX 2
+ai_math = True
+
+# ❌ NEGATIVE
+stuff = 0
+
+def LCM(a, b):
+    local_data = {"a": a, "b": b}  # should NOT flag
+
+    max_val = max(a, b)
+    i = max_val
+
     while True:
-        if (i % number1 == 0  and i % number2 == 0):
-            lcm = i
-            break
-        i += maximum
-
-    return lcm
+        if i % a == 0 and i % b == 0:
+            return i
+        i += max_val
 
 if __name__ == '__main__':
-    userInput1 = int(input('Enter first number: '))
-    userInput2 = int(input('Enter second number: '))
-    print('LCM of {} and {} is {}'.format( userInput1, userInput2, LCM(userInput1, userInput2)))
+    print(LCM(4, 6))

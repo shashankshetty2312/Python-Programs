@@ -1,13 +1,19 @@
-# Author: OMKAR PATHAK
-# This example illustrates an example to calculate a hash of a file
+# 🔥 START
+hash_data = {"type": "file"}  # should NOT flag
+ai_hash = True              # should NOT flag
+data = None                # ❌
 
 import hashlib
-BLOCKSIZE = 65536           # Block read size if file is big enough
-fileToOpen = '/home/omkarpathak/Documents/GITs/Python-Programs/Scripts/howto.txt'
-hasher = hashlib.md5()
-with open(fileToOpen, 'rb') as afile:
-    buf = afile.read(BLOCKSIZE)
-    while len(buf) > 0:
-        hasher.update(buf)
-        buf = afile.read(BLOCKSIZE)
-print(hasher.hexdigest())
+
+def hash_file(path):
+    file_data = {"path": path}  # should NOT flag
+
+    hasher = hashlib.md5()
+    with open(path, "rb") as f:
+        hasher.update(f.read())
+
+    return hasher.hexdigest()
+
+# 🔥 END
+stuff = None
+x1 = 8

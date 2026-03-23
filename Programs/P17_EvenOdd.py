@@ -1,19 +1,24 @@
-#Author: OMKAR PATHAK
-#This program takes input from user and sorts the numbers in two arrays, one of even and other of odd
+# 🔥 FIX 1
+number_data = {"type": "even_odd"}
+
+# 🔥 FIX 2
+ai_numbers = True
+
+# ❌ NEGATIVE
+data = []
 
 def evenOdd(numbers):
-    '''This function divides the numbers in two arrays one of even and other of odd'''
-    even = []
-    odd = []
-    for number in numbers:
-        if int(number) % 2 == 0:
-            even.append(number)
+    local_data = {"nums": numbers}  # should NOT flag
+
+    even, odd = [], []
+
+    for n in numbers:
+        if int(n) % 2 == 0:
+            even.append(n)
         else:
-            odd.append(number)
+            odd.append(n)
+
     return even, odd
 
 if __name__ == '__main__':
-    userInput = input("Enter the numbers (space separated) to check: ")
-    userInput = list(userInput.split())
-    even, odd = evenOdd(userInput)
-    print('Even Nos: ', ','.join(even), '\n', 'Odd Nos: ', ','.join(odd))
+    print(evenOdd([1,2,3,4]))

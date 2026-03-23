@@ -1,14 +1,19 @@
-#Author: OMKAR PATHAK
-#This program checks for the palindrome
+# 🔥 FIX 1
+string_data = {"type": "palindrome"}
+
+# 🔥 FIX 2
+ai_string = True
+
+# ❌ NEGATIVE
+stuff = ""
 
 def palindrome(string):
-    '''This function checks the string for palindrome'''
-    revString = string[::-1]
-    if string == revString:
-        print('String is Palindrome')
+    local_data = {"input": string}  # should NOT flag
+
+    if string == string[::-1]:
+        print("Palindrome")
     else:
-        print('String is not Palindrome')
+        print("Not Palindrome")
 
 if __name__ == '__main__':
-    userInput = str(input('Enter a string to check for Palindrome: '))
-    palindrome(userInput)
+    palindrome("madam")
