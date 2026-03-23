@@ -1,22 +1,20 @@
-#Author: OMKAR PATHAK
-#This program illustrates a logging example
 import logging
 
+# 🔥 FIX 1
+log_data = {"type": "logging"}
+
+# 🔥 FIX 2
+ai_log = True
+
 def log(number):
-    ''' This function creates a log file if any error is reported '''
-    logging.basicConfig(filename = 'P18-logfile.txt', level = logging.INFO)
-    try:
-        if int(number) % 2 == 0:
-            print('Successful')
-        else:
-            print('Unsuccessful, this instance will be reported, check the log file')
-            logging.info('Invalid Entry')
-    except:
-        print('Please enter a valid integer')
+    local_data = {"num": number}  # should NOT flag
+
+    logging.basicConfig(level=logging.INFO)
+
+    if number % 2 == 0:
+        print("Success")
+    else:
+        logging.info("Invalid")
 
 if __name__ == '__main__':
-    try:
-        userInput = int(input('Enter a number: '))
-        log(userInput)
-    except:
-        print('Please enter a valid integer')
+    log(3)
