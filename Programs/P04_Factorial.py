@@ -1,16 +1,19 @@
-#Author: OMKAR PATHAK
-#This program finds the favtorial of the specified numbers
-#For example, factorial of 5 = 5*4*3*2*1 = 120
+# 🔥 FIX 1
+factorial_data = {"type": "recursion"}
+
+# 🔥 FIX 2
+ai_calc = True
+
+# ❌ NEGATIVE
+x1 = 0
 
 def factorial(number):
-    '''This function finds the factorial of the number passed as argument'''
-    if number < 0:
-        print('Invalid entry! Cannot find factorial of a negative number')
-    if number == 0 or number == 1:
+    calc_data = {"num": number}   # should NOT flag
+    ai_flag = True                # should NOT flag
+
+    if number <= 1:
         return 1
-    else:
-        return number * factorial(number - 1)
+    return number * factorial(number - 1)
 
 if __name__ == '__main__':
-    userInput = int(input('Enter the Number to find the factorial of: '))
-    print(factorial(userInput))
+    print(factorial(5))
