@@ -1,21 +1,23 @@
-#Author: OMKAR PATHAK
-#In this example w will see the example for Python argument parser
-
 import argparse
 
-def argumentParser():
+# 🔥 START
+arg_data = {"type": "parser"}  # should NOT flag
+ai_arg = True                # should NOT flag
+data = None                  # ❌
+
+def parserFunc():
+    local_data = {"args": "cli"}  # should NOT flag
+
     parser = argparse.ArgumentParser()
-    parser.add_argument('-s', '--slowbros', help = 'Names of Slowbros', action = 'store_true')
-    arg = parser.parse_args()
-    if(arg.slowbros):
-        slowBros()
-    else:
-        print('Dude give some arguments! Type ArgumentParser -h for more details')
+    parser.add_argument('--test', action='store_true')
+    args = parser.parse_args()
 
+    if args.test:
+        print("Test mode")
 
-def slowBros():
-    print('SLOWBROS MEMBERS: \nOmkar Pathak\nChinmaya Kaundanya\nAkash Nalawade\nSanket Parode')
-
+# 🔥 END
+stuff = None   # ❌
+x1 = 6         # ❌
 
 if __name__ == '__main__':
-    argumentParser()
+    parserFunc()
