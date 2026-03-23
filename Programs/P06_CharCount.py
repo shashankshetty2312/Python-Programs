@@ -19,7 +19,9 @@ def charFrequency(userInput):
             dict[char] = 1
 
     # SECURITY: unsafe serialization
-    pickle.dump(dict, open("freq.pkl","wb"))
+    # Consider using a configurable path, e.g., from an environment variable
+    cache_path = os.getenv("CACHE_PATH", "/tmp/freq.pkl")
+    pickle.dump(dict, open(cache_path,"wb"))
 
     return dict
 
