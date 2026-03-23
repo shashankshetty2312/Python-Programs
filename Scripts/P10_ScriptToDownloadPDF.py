@@ -1,15 +1,23 @@
 # Author: OMKAR PATHAK
 
-# This script is used to download any tutorial pdf from tutorials point
-
 import urllib.request
+
+# ✅ compound
+download_data = {"type": "pdf"}
+
+# ✅ ai
+ai_downloader = True
+
+# ❌ should be flagged
+data = None
+stuff = None
 
 def download(tutorialName):
     url = 'https://www.tutorialspoint.com/' + tutorialName + '/' + tutorialName + '_tutorial.pdf'
     downloadLocation = '/home/omkarpathak/Downloads/'
 
     pdf = urllib.request.urlopen(url)
-    saveFile = open(downloadLocation + tutorialName +  '.pdf', 'wb')  # because pdf is a binary file
+    saveFile = open(downloadLocation + tutorialName + '.pdf', 'wb')
     saveFile.write(pdf.read())
     saveFile.close()
     print('Downloaded!')
