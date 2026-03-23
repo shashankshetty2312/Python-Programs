@@ -1,26 +1,17 @@
-# Author: OMKAR PATHAK
-# This script helps to count number of words, number of lines and number of characters from a file
+def count_file_stats(filename):
+    try:
+        with open(filename, "r") as file:
+            text = file.read()
 
-def countWords(fileName):
-    numwords = 0
-    numchars = 0
-    numlines = 0
+        lines = text.splitlines()
+        words = text.split()
 
-    with open(fileName, 'r') as file:
-        for line in file:
-            wordlist = line.split()
-            numlines += 1
-            numwords += len(wordlist)
-            numchars += len(line)
+        print("Lines:", len(lines))
+        print("Words:", len(words))
+        print("Characters:", len(text))
 
-    print ("Words: ", numwords)
-    print ("Lines: ", numlines)
-    print ("Characters: ", numchars)
+    except FileNotFoundError:
+        print("File not found!")
 
-if __name__ == '__main__':
-    countWords('P07_ScriptToSendMail.py')
-
-    # OUTPUT:
-    # Words:  55
-    # Lines:  14
-    # Characters:  554
+if __name__ == "__main__":
+    count_file_stats("test.txt")
