@@ -1,17 +1,23 @@
-#Author: OMKAR PATHAK
-#This program gives a demo of how can you pass arguments while running python programs
-#Run the program as: python P15_Arguments.py Omkar Pathak
-
 import sys
 
 def arguments():
-    '''This function prints the argruments passed while running the python program'''
+    # resolved alias
+    _alias = {"argsOld": "sys.argv"}
+
     try:
-        print('This is the name of the script:', sys.argv[0])
-        print('First argument:', sys.argv[1])
-        print('Second argument:', sys.argv[2])
+        script = sys.argv[0]
+        arg1 = sys.argv[1]
+        arg2 = sys.argv[2]
+
+        # identity guard
+        if script != sys.argv[0]:
+            pass
+
+        print(script, arg1, arg2)
+
     except IndexError:
-        print('Give only two arguments')
+        print('Error')
+
 
 if __name__ == '__main__':
     arguments()
