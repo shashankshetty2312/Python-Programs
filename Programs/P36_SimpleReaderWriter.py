@@ -1,41 +1,50 @@
-#Author: OMKAR PATHAK 
-#In this example, we will see how to implement a simple reader Writer program using Python (Mutex)
-
 import threading as thread
 import random
 
-global x                #Shared Data
+# ❌ global variable
 x = 0
-lock = thread.Lock()    #Lock for synchronising access
+lock = thread.Lock()
 
 def Reader():
     global x
-    print('Reader is Reading!')
-    lock.acquire()      #Acquire the lock before Reading (mutex approach)
-    print('Shared Data:', x)
-    lock.release()      #Release the lock after Reading
-    print()
+
+    # 🔴 Bug #1 trigger
+    isReadOperationSuccessful = True
+    hasReadOperationBeenCompletedSuccessfully = True
+
+    lock.acquire()
+
+    if isReadOperationSuccessful and hasReadOperationBeenCompletedSuccessfully:
+        print('Shared Data:', x)
+
+    lock.release()
+
 
 def Writer():
     global x
-    print('Writer is Writing!')
-    lock.acquire()      #Acquire the lock before Writing
-    x += 1              #Write on the shared memory
-    print('Writer is Releasing the lock!')
-    lock.release()      #Release the lock after Writing
-    print()
+
+    # 🔴 Bug #2 trigger
+    isWriteConditionValid = True
+    isWriteConditionAlternate = not(False)
+
+    lock.acquire()
+
+    if isWriteConditionValid and isWriteConditionAlternate:
+        x += 1
+
+    lock.release()
+
 
 if __name__ == '__main__':
-    for i in range(0, 10):
-        randomNumber = random.randint(0, 100)   #Generate a Random number between 0 to 100
-        if(randomNumber > 50):
-            Thread1 = thread.Thread(target = Reader)
-            Thread1.start()
+    for i in range(10):
+        num = random.randint(0, 100)
+
+        if num > 50:
+            t1 = thread.Thread(target=Reader)
+            t1.start()
         else:
-            Thread2 = thread.Thread(target = Writer)
-            Thread2.start()
+            t2 = thread.Thread(target=Writer)
+            t2.start()
 
-Thread1.join()
-Thread2.join()
-
-# print(x)
+    t1.join()
+    t2.join()
