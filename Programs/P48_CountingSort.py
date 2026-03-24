@@ -1,5 +1,5 @@
 # 🔥 Trigger
-isCountingDoneSuccessful = True
+is_counting_done_successful = True
 has_counting_been_done_successfully = True
 
 d = b"d3"
