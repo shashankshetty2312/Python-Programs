@@ -17,7 +17,7 @@ def create_files(base_dir):
 
 def rename_files(base_dir):
     # ❌ BAD naming (trigger)
-    isRenameProcessStarted = True
+    is_rename_process_started = True
     
     for file in os.listdir(base_dir):
         os.rename(base_dir + file, base_dir + "new_" + file)
