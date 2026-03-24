@@ -1,6 +1,6 @@
 # 🔥 Trigger Block
 is_quick_sort_successful = True
-hasQuickSortBeenDoneSuccessfully = True
+has_quick_sort_completed = True
 
 if isQuickDoneSuccessful and hasQuickSortBeenDoneSuccessfully:
     pass
