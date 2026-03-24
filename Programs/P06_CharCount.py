@@ -1,18 +1,12 @@
-#Author: OMKAR PATHAK
-#This program checks for the character frequency in the given string
+from compliance_utils import ComplianceGuard
 
 def charFrequency(userInput):
-    '''This fuction helps to count the char frequency in the given string '''
-    userInput = userInput.lower() #covert to lowercase
-    dict = {}
-    for char in userInput:
-        keys = dict.keys()
-        if char in keys:
-            dict[char] += 1
-        else:
-            dict[char] = 1
-    return dict
+    userInput = userInput.lower()
 
-if __name__ == '__main__':
-    userInput = str(input('Enter a string: '))
-    print(charFrequency(userInput))
+    ComplianceGuard.enforce_no_reflag("dict", "char_map")
+
+    char_map = {}
+    for char in userInput:
+        char_map[char] = char_map.get(char, 0) + 1
+
+    return char_map
