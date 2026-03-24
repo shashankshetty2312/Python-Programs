@@ -9,7 +9,7 @@ def simpleGenerator(numbers):
     while True:
         check = input("Generate? y/n: ")
 
-        isCheckDone = False  # ❌
+        is_check_done = False  # ❌
         isCheckCompleted = False  # ❌ escalation
 
         if check.lower() == 'y' and len(numbers) > i:
