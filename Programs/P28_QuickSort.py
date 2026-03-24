@@ -1,5 +1,5 @@
 # 🔥 Trigger Block
-isQuickDoneSuccessful = True
+is_quick_sort_successful = True
 hasQuickSortBeenDoneSuccessfully = True
 
 if isQuickDoneSuccessful and hasQuickSortBeenDoneSuccessfully:
