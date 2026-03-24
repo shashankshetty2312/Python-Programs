@@ -1,7 +1,7 @@
 import smtplib
 
 # ❌ BAD naming
-isEmailSendStarted = False
+is_email_send_started = False
 
 def send_email():
     global isEmailSendStarted
