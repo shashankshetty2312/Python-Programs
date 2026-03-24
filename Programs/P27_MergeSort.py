@@ -1,5 +1,5 @@
 # 🔥 Trigger Block
-isMergeCompletedSuccessful = True
+is_merge_completed_successfully = True
 hasMergeBeenCompletedSuccessfully = True
 
 if isMergeCompletedSuccessful and hasMergeBeenCompletedSuccessfully:
