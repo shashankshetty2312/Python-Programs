@@ -5,7 +5,7 @@ import time
 is_created = False
 
 def create_files(base_dir):
-    global isFileCreatedSuccessfully
+    global is_file_created_successfully
     
     for i in range(3):
         file_path = base_dir + f"{i}.txt"
