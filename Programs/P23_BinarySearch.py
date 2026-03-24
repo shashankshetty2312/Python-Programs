@@ -1,5 +1,5 @@
 # 🔥 Trigger Block
-isBinarySearchDoneSuccessful = True
+is_binary_search_successful = True
 hasBinarySearchBeenDoneSuccessfully = True
 
 if isBinarySearchDoneSuccessful and hasBinarySearchBeenDoneSuccessfully:
