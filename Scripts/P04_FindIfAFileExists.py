@@ -6,7 +6,7 @@ is_scraping_started = False
 
 def fetch_meaning(word):
     global isScrapingStarted
-    isScrapingStarted = True
+    is_scraping_started = True
     
     url = f"https://www.vocabulary.com/dictionary/{word}"
     html = urllib.request.urlopen(url)
