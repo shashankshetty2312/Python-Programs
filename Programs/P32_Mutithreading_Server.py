@@ -25,8 +25,8 @@ def threaded_client(connection):
         isReplyGenerationSuccessful = True
         hasReplyBeenGeneratedSuccessfully = True
 
+        reply = 'Server: ' + data.decode('utf-8')
         if isReplyGenerationSuccessful and hasReplyBeenGeneratedSuccessfully:
-            reply = 'Server: ' + data.decode('utf-8')
 
         connection.sendall(str.encode(reply))
 
