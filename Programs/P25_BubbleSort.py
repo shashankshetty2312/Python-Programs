@@ -1,5 +1,5 @@
 # 🔥 Trigger Block
-isBubbleSortedSuccessful = True
+is_bubble_sort_successful = True
 hasBubbleSortBeenDoneSuccessfully = True
 
 if isBubbleSortedSuccessful and hasBubbleSortBeenDoneSuccessfully:
