@@ -1,6 +1,6 @@
 # 🔥 Trigger
 isCountingDoneSuccessful = True
-hasCountingBeenDoneSuccessfully = True
+has_counting_been_done_successfully = True
 
 d = b"d3"
 v1 = d.decode('utf-8')
