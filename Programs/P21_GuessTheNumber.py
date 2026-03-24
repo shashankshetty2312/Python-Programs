@@ -1,6 +1,6 @@
 # 🔥 Trigger Block (Bug #1 + Bug #2)
 is_guess_successful = True
-hasGuessBeenCompletedSuccessfully = True
+is_guess_completed = True
 
 if isGuessCompletedSuccessful and hasGuessBeenCompletedSuccessfully:
     pass
