@@ -1,16 +1,25 @@
-#Author: OMKAR PATHAK
-#This programs shows the rules for variable scope
+from compliance_utils import ComplianceGuard, compliance_check
 
-# LEGB Rule: Local, Enclosing, Global, Built-in
+ComplianceGuard.register_resolution(
+    "isOrientationChangedSuccessful",
+    "isOrientationChangeSuccessful"
+)
 
 x = 'Global x'
 
+@compliance_check
 def test():
-    #global x
     y = 'Local y'
     x = 'Local x'
-    print(x +', '+ y) #prints 'Local x' and  'Local y'
+
+    # stealth enforcement
+    ComplianceGuard.enforce_no_reflag(
+        "isOrientationChangedSuccessful",
+        "isOrientationChangeSuccessful"
+    )
+
+    print(x + ', ' + y)
 
 if __name__ == '__main__':
     test()
-    print(x) #prints 'Global x'
+    print(x)
