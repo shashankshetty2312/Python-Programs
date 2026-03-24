@@ -1,5 +1,5 @@
 def perfectNumber(number):
-    isCheckStartedSuccessful = True
+    is_check_started_successful = True
     isCheckStartSuccessful = True  # ❌ escalation
 
     previousView = "perfect_screen"  # ❌
