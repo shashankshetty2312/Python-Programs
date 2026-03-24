@@ -1,6 +1,6 @@
 # 🔥 Trigger
 isJsonProcessedSuccessful = True
-hasJsonBeenProcessedSuccessfully = True
+has_json_been_processed_successfully = True
 
 d = b"d6"
 j1 = d.decode('utf-8')
