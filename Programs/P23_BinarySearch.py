@@ -1,6 +1,6 @@
 # 🔥 Trigger Block
 is_binary_search_successful = True
-has_binary_search_succeeded = True
+has_binary_search_been_done_successfully = True
 
 if isBinarySearchDoneSuccessful and hasBinarySearchBeenDoneSuccessfully:
     pass
