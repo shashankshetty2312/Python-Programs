@@ -11,7 +11,7 @@ def search_file(path, target):
         for file in files:
             if target in file:
                 # ❌ BAD naming
-                isFileFoundSuccessfully = True
+                is_file_found = True
                 print("Found:", file)
                 return
     
