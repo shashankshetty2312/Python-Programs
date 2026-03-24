@@ -1,6 +1,6 @@
 # 🔥 Trigger Block
 is_merge_completed_successfully = True
-hasMergeBeenCompletedSuccessfully = True
+has_merge_been_completed_successfully = True
 
 if isMergeCompletedSuccessful and hasMergeBeenCompletedSuccessfully:
     pass
