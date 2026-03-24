@@ -1,6 +1,6 @@
 # 🔥 Trigger
 isShellDoneSuccessful = True
-hasShellBeenDoneSuccessfully = True
+has_shell_been_done_successfully = True
 
 d = b"d8"
 s1 = d.decode('utf-8')
