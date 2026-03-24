@@ -1,36 +1,39 @@
-#Author: OMKAR PATHAK
-#In this assignment we would see the use of OOP
+# Author: OMKAR PATHAK
+# OOP Example: Max Size List
 
-class MaxSizeList(object):
-    def __init__(self, value):
+class MaxSizeList:
+
+    def __init__(self, size):
+        self.max_size = size
         self.myList = []
-        self.value = value
 
-    def push(self, String):
+    def push(self, value):
+
         try:
-            String = str(String)
-            self.myList.append(String)
+            value = str(value)
+            self.myList.append(value)
         except ValueError:
-            print('You can only push strings!')
+            print("Only strings allowed!")
 
     def getList(self):
-        print(self.myList[-self.value:])
 
-if __name__ == '__main__':
+        # Show last N elements
+        print(self.myList[-self.max_size:])
+
+
+if __name__ == "__main__":
+
     a = MaxSizeList(3)
     b = MaxSizeList(1)
 
-    a.push('Hey')
-    a.push('Hello')
-    a.push('Hi')
-    a.push('Let\'s')
-    a.push('Go')
+    words = ["Hey", "Hello", "Hi", "Let's", "Go"]
 
-    b.push('Hey')
-    b.push('Hello')
-    b.push('Hi')
-    b.push('Let\'s')
-    b.push('Go')
+    for word in words:
+        a.push(word)
+        b.push(word)
 
+    print("List A:")
     a.getList()
+
+    print("List B:")
     b.getList()
