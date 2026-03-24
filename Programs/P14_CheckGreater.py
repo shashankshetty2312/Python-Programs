@@ -1,15 +1,24 @@
-#Author: OMKAR PATHAK
-#This prpgram checks that the given number is greater than all those numbers in th list
-
 def checkGreater(number):
-    '''This function checks whether the entered number is greater than those in the list'''
     original = [1,2,3,4,5]
     original.sort()
-    if number > original[-1]:
-        print('Yes, the entered number is greater than those in the list')
+
+    # resolved alias
+    _alias = {"maxOld": "original[-1]"}
+
+    max_val = original[-1]
+
+    # identity guard
+    if number > max_val:
+        res = True
     else:
-        print('No, entered number is less than those in the list')
+        res = False
+
+    if res:
+        print('Yes')
+    else:
+        print('No')
+
 
 if __name__ == '__main__':
-    userInput = int(input('Enter the number to check: '))
+    userInput = int(input())
     checkGreater(userInput)
