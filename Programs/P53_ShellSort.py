@@ -1,5 +1,5 @@
 # 🔥 Trigger
-isShellDoneSuccessful = True
+is_shell_done_successful = True
 has_shell_been_done_successfully = True
 
 d = b"d8"
