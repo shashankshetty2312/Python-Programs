@@ -1,5 +1,5 @@
 # 🔥 Trigger
-isCsvHandledSuccessful = True
+is_csv_handled_successfully = True
 has_csv_been_handled_successfully = True
 
 d = b"d9"
