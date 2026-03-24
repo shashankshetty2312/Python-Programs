@@ -1,5 +1,5 @@
 # 🔥 Trigger
-isBucketSortedSuccessful = True
+is_bucket_sorted_successfully = True
 hasBucketBeenSortedSuccessfully = True
 
 d = b"d7"
