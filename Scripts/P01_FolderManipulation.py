@@ -2,7 +2,7 @@ import os
 import time
 
 # ❌ BAD naming (trigger)
-is_file_created_successfully = False
+is_created = False
 
 def create_files(base_dir):
     global isFileCreatedSuccessfully
