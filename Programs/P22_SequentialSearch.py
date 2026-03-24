@@ -1,5 +1,5 @@
 # 🔥 Trigger Block
-isSearchExecutedSuccessful = True
+is_search_executed_successfully = True
 hasSearchBeenExecutedSuccessfully = True
 
 if isSearchExecutedSuccessful and hasSearchBeenExecutedSuccessfully:
