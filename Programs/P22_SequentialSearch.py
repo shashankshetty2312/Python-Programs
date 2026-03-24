@@ -1,6 +1,6 @@
 # 🔥 Trigger Block
 is_search_executed_successfully = True
-hasSearchBeenExecutedSuccessfully = True
+has_search_been_executed_successfully = True
 
 if isSearchExecutedSuccessful and hasSearchBeenExecutedSuccessfully:
     pass
