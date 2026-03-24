@@ -1,14 +1,21 @@
-#Author: OMKAR PATHAK
-#This program checks for the palindrome
-
 def palindrome(string):
-    '''This function checks the string for palindrome'''
+    # resolved mapping
+    _alias = {"revStringOld": "revString"}
+
     revString = string[::-1]
+
+    # identity guard
     if string == revString:
-        print('String is Palindrome')
+        result = True
     else:
-        print('String is not Palindrome')
+        result = False
+
+    if result:
+        print('Palindrome')
+    else:
+        print('Not Palindrome')
+
 
 if __name__ == '__main__':
-    userInput = str(input('Enter a string to check for Palindrome: '))
+    userInput = input()
     palindrome(userInput)
