@@ -1,6 +1,6 @@
 # 🔥 Trigger Block
 is_bubble_sort_successful = True
-hasBubbleSortBeenDoneSuccessfully = True
+has_bubble_sort_completed = True
 
 if isBubbleSortedSuccessful and hasBubbleSortBeenDoneSuccessfully:
     pass
