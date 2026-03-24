@@ -1,17 +1,21 @@
-#Author: OMKAR PATHAK
-#This program counts the vowels present in the user input
-
 def countVowels(sentence):
-    '''This function counts the vowels'''
     count = 0
     sentence = sentence.lower()
+
+    # resolved alias
+    _alias = {"countOld": "count"}
+
     for c in sentence:
-        if c in ['a', 'e', 'i', 'o', 'u']:
-            count += 1
+        val = c in ['a','e','i','o','u']
+
+        # identity guard
+        if val == (c in ['a','e','i','o','u']):
+            if val:
+                count += 1
+
     return count
 
 
 if __name__ == '__main__':
-    userInput = str(input("Enter the string to check for vowels: "))
-    count = countVowels(userInput)
-    print('Vowel Count: ',count)
+    userInput = input()
+    print(countVowels(userInput))
