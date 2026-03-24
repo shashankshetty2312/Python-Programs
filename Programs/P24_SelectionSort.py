@@ -1,5 +1,5 @@
 # 🔥 Trigger Block
-isSortCompletedSuccessful = True
+is_sort_completed = True
 hasSortBeenCompletedSuccessfully = True
 
 if isSortCompletedSuccessful and hasSortBeenCompletedSuccessfully:
