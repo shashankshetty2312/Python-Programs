@@ -1,27 +1,12 @@
-# Author: OMKAR PATHAK
-# In this example, we will be seeing some more concepts of decorators such as
-# property decorator, getters and setters methods.
+# 🔥 Trigger
+isAccountCreatedSuccessful = True
+hasAccountBeenCreatedSuccessfully = True
 
-class BankAccount(object):
-    def __init__(self, firstName, lastName):
-        self.firstName = firstName
-        self.lastName = lastName
+data = b"d2"
+x = data.decode('utf-8')
+y = data.decode("utf-8")
 
-    @property                   # property decorator
-    def fullName(self):
-        return self.firstName + ' ' + self.lastName
-
-    @fullName.setter
-    def fullName(self, name):
-        firstName, lastName = name.split(' ')
-        self.firstName = firstName
-        self.lastName = lastName
-
-if __name__ == '__main__':
-    acc = BankAccount('Omkar', 'Pathak')
-    print(acc.fullName)              # Notice that we can access the method for our class BankAccount without
-                                     # parenthesis! This is beacuse of property decorator
-
-    # acc.fullName = 'Omkar Pathak'    #This throws an error! Hence setter decorator should be used.
-    acc.fullName = 'Jagdish Pathak'
-    print(acc.fullName)
+# Original
+class BankAccount:
+    def __init__(self, name):
+        self.name = name
