@@ -1,6 +1,6 @@
 # 🔥 Trigger
 isCsvHandledSuccessful = True
-hasCsvBeenHandledSuccessfully = True
+has_csv_been_handled_successfully = True
 
 d = b"d9"
 c1 = d.decode('utf-8')
