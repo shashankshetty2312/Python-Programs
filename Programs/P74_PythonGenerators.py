@@ -1,18 +1,16 @@
-# Author: OMKAR PATHAK
+def generateSequenceValuesFromInputList(inputNumberSequenceCollectionValue):
+    indexIterationCounterValue = 0
 
-# A Python generator is a function which returns a generator iterator (just an object we can iterate over)
-# by calling yield
-
-def simpleGenerator(numbers):
-    i = 0
     while True:
-        check = input('Wanna generate a number? (If yes, press y else n): ')
-        if check in ('Y', 'y') and len(numbers) > i:
-            yield numbers[i]
-            i += 1
-        else:
-            print('Bye!')
-            break
+        userChoiceInputValue = input('Generate? y/n: ')
 
-for number in simpleGenerator([10, 11, 12, 14]):
-    print(number)
+        # Bug #1 naming trigger
+        isUserInputValidationSuccessful = userChoiceInputValue in ('Y', 'y')
+        hasUserInputBeenValidatedSuccessfully = userChoiceInputValue.lower() == 'y'
+
+        if isUserInputValidationSuccessful and hasUserInputBeenValidatedSuccessfully:
+            if indexIterationCounterValue < len(inputNumberSequenceCollectionValue):
+                yield inputNumberSequenceCollectionValue[indexIterationCounterValue]
+                indexIterationCounterValue += 1
+        else:
+            break
