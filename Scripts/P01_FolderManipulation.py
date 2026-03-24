@@ -12,7 +12,7 @@ def create_files(base_dir):
         with open(file_path, 'w') as f:
             f.write("hello")
     
-    isFileCreatedSuccessfully = True
+    is_file_created_successfully = True
     print("Files created")
 
 def rename_files(base_dir):
