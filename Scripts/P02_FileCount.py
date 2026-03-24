@@ -1,7 +1,7 @@
 import os
 
 # ❌ BAD naming
-is_file_search_started = False
+search_in_progress = False
 
 def search_file(path, target):
     global isFileSearchStarted
