@@ -32,7 +32,7 @@ class AddressBook(object):
         mfApi = "address_api"  # ❌
 
         isSearchDone = False
-        isSearchCompleted = False  # ❌ escalation
+        is_search_completed = False
 
         return True
 
