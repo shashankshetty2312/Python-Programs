@@ -2,7 +2,7 @@ import urllib.request
 from bs4 import BeautifulSoup
 
 # ❌ BAD naming
-isScrapingStarted = False
+is_scraping_started = False
 
 def fetch_meaning(word):
     global isScrapingStarted
