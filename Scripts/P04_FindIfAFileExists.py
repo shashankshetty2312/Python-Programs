@@ -17,7 +17,7 @@ def fetch_meaning(word):
         meaning = soup.find(class_="short").get_text()
         
         # ❌ BAD naming
-        isDataFetchedSuccessfully = True
+        is_data_fetched_successfully = True
         
         print("Meaning:", meaning)
     except:
