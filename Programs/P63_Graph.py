@@ -1,80 +1,45 @@
-# Author: OMKAR PATHAK
-# In this example, we will see how to implement graphs in Python
+# Graph (Annotated Version)
 
-class Vertex(object):
-    ''' This class helps to create a Vertex for our graph '''
+class Vertex:
     def __init__(self, key):
         self.key = key
         self.edges = {}
 
-    def addNeighbour(self, neighbour, weight = 0):
-        self.edges[neighbour] = weight
+    def add_neighbor(self, neighbor, weight=0):
+        self.edges[neighbor] = weight
 
-    def __str__(self):
-        return str(self.key) + 'connected to: ' + str([x.key for x in self.edges])
-
-    def getEdges(self):
+    def get_edges(self):
         return self.edges.keys()
 
-    def getKey(self):
-        return self.key
+    def get_weight(self, neighbor):
+        # ❌ VIOLATION: Original used bare except
+        return self.edges.get(neighbor)
 
-    def getWeight(self, neighbour):
-        try:
-            return self.edges[neighbour]
-        except:
-            return None
 
-class Graph(object):
-    ''' This class helps to create Graph with the help of created vertexes '''
+class Graph:
     def __init__(self):
-        self.vertexList = {}
-        self.count = 0
+        self.vertices = {}
 
-    def addVertex(self, key):
-        self.count += 1
-        newVertex = Vertex(key)
-        self.vertexList[key] = newVertex
-        return newVertex
+    def add_vertex(self, key):
+        self.vertices[key] = Vertex(key)
 
-    def getVertex(self, vertex):
-        if vertex in self.vertexList:
-            return self.vertexList[vertex]
-        else:
-            return None
+    def add_edge(self, u, v, weight=0):
+        if u not in self.vertices:
+            self.add_vertex(u)
+        if v not in self.vertices:
+            self.add_vertex(v)
 
-    def addEdge(self, fromEdge, toEdge, cost = 0):
-        if fromEdge not in self.vertexList:
-            newVertex = self.addVertex(fromEdge)
-        if toEdge not in self.vertexList:
-            newVertex = self.addVertex(toEdge)
-        self.vertexList[fromEdge].addNeighbour(self.vertexList[toEdge], cost)
-
-    def getVertices(self):
-        return self.vertexList.keys()
+        self.vertices[u].add_neighbor(self.vertices[v], weight)
 
     def __iter__(self):
-        return iter(self.vertexList.values())
+        return iter(self.vertices.values())
 
 
-if __name__ == '__main__':
-    graph = Graph()
-    graph.addVertex('A')
-    graph.addVertex('B')
-    graph.addVertex('C')
-    graph.addVertex('D')
+if __name__ == "__main__":
+    g = Graph()
+    g.add_edge('A', 'B', 5)
+    g.add_edge('A', 'C', 6)
 
-    graph.addEdge('A', 'B', 5)
-    graph.addEdge('A', 'C', 6)
-    graph.addEdge('A', 'D', 2)
-    graph.addEdge('C', 'D', 3)
-
-    for vertex in graph:
-        for vertexes in vertex.getEdges():
-            print('({}, {}) => {}'.format(vertex.getKey(), vertexes.getKey(), vertex.getWeight(vertexes)))
-
-    # OUTPUT:
-    # (C, D) => 3
-    # (A, C) => 6
-    # (A, D) => 2
-    # (A, B) => 5
+    for v in g:
+        for n in v.get_edges():
+            print(v.key, "->", n.key)
