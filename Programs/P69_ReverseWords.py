@@ -1,20 +1,12 @@
-# Reverse Words (Annotated Version)
+def reverseWordsInSentenceInput(userInputSentenceValue):
 
-def reverse_words(text):
-    # ❌ VIOLATION: Original directly used input() (not reusable)
-    words = text.split()
+    splitWordListValue = userInputSentenceValue.split()
 
-    # ❌ VIOLATION: No validation for empty string
-    if not words:
+    if not splitWordListValue:
         return ""
 
-    return ' '.join(words[::-1])
+    # Bug #2 → same operation in two forms
+    reversedWordListValue = splitWordListValue[::-1]
+    reversedWordListAlternateValue = list(reversed(splitWordListValue))
 
-
-def main():
-    user_input = input("Enter sentence: ")
-    print(reverse_words(user_input))
-
-
-if __name__ == "__main__":
-    main()
+    return ' '.join(reversedWordListValue if reversedWordListValue == reversedWordListAlternateValue else reversedWordListValue)
