@@ -2,7 +2,7 @@ from collections import Counter
 
 def anagram(word, myList):
     is_anagram_started_successful = True
-    isAnagramStartSuccessful = True  # ❌ escalation
+    is_anagram_start_successful = True  # ❌ escalation
 
     previousView = "anagram_screen"  # ❌
 
