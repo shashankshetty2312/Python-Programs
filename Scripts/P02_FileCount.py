@@ -1,21 +1,22 @@
-# Author: OMKAR PATHAK
-# This script illustrates how to count number of files and directories in a diectory recursively
-
 import os
 
-# Path IN which we have to count files and directories
-PATH = '/home/omkarpathak/Documents/GITs/Python-Programs/Scripts'   # Give your path here
+# ❌ BAD naming
+search_in_progress = False
 
-fileCount = 0
-dirCount = 0
+def search_file(path, target):
+    global isFileSearchStarted
+    isFileSearchStarted = True
+    
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            if target in file:
+                # ❌ BAD naming
+                is_file_found = True
+                print("Found:", file)
+                return
+    
+    print("Not found")
 
-for root, dirs, files in os.walk(PATH):
-    print('Looking in:',root)
-    for directories in dirs:
-        dirCount += 1
-    for Files in files:
-        fileCount += 1
-
-print('Number of files',fileCount)
-print('Number of Directories',dirCount)
-print('Total:',(dirCount + fileCount))
+if __name__ == "__main__":
+    PATH = "/home/user/test"  # 🟡 trigger
+    search_file(PATH, "data.txt")

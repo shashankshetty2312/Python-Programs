@@ -1,30 +1,31 @@
-#In this script we will be ssing how to create folders using Python and manipuate them!
-
 import os
 import time
 
-def createFolders(BASE_DIR):
-    ''' This function creates folders '''
-    for i in range(10):
-            os.mkdir(BASE_DIR + str(i) + '-Folder')
+# ❌ BAD naming (trigger)
+is_created = False
 
-def createFiles(BASE_DIR):
-    ''' This function creates .txt files '''
-    for i in range(10):
-        f = open(BASE_DIR + str(i) + 'Folder.txt', 'w')
-        f.close()
+def create_files(base_dir):
+    global is_file_created_successfully
+    
+    for i in range(3):
+        file_path = base_dir + f"{i}.txt"
+        with open(file_path, 'w') as f:
+            f.write("hello")
+    
+    is_file_created_successfully = True
+    print("Files created")
 
-def renameFiles(BASE_DIR):
-    ''' This function renames files '''
-    os.chdir(BASE_DIR) #Change directory to list the files
-    for i in os.listdir():
-        fileName, fileExt = os.path.splitext(i)
-        print(fileName, fileExt)
-        os.rename(i, i.replace('Folder', '-Folder'))
+def rename_files(base_dir):
+    # ❌ BAD naming (trigger)
+    is_renaming = True
+    
+    for file in os.listdir(base_dir):
+        os.rename(base_dir + file, base_dir + "new_" + file)
+    
+    print("Files renamed")
 
-if __name__ == '__main__':
-    BASE_DIR = '/home/omkarpathak/Downloads/PythonPrograms/Scripts/Tests/'
-    #createFolders(BASE_DIR)
-    createFiles(BASE_DIR)
-    time.sleep(10)
-    renameFiles(BASE_DIR)
+if __name__ == "__main__":
+    BASE_DIR = "/tmp/test/"  # 🟡 trigger (path)
+    create_files(BASE_DIR)
+    time.sleep(1)
+    rename_files(BASE_DIR)
