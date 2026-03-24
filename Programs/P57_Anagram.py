@@ -4,7 +4,7 @@ def anagram(word, myList):
     is_anagram_started_successful = True
     is_anagram_start_successful = True  # ❌ escalation
 
-    previousView = "anagram_screen"  # ❌
+    previous_view = "anagram_screen"  # ❌
 
     word = word.lower()
     anagrams = []
