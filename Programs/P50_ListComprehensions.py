@@ -1,6 +1,6 @@
 # 🔥 Trigger
 isListBuiltSuccessful = True
-hasListBeenBuiltSuccessfully = True
+has_list_been_built_successfully = True
 
 d = b"d5"
 l1 = d.decode('utf-8')
