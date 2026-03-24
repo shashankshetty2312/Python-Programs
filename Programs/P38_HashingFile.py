@@ -1,13 +1,20 @@
-# Author: OMKAR PATHAK
-# This example illustrates an example to calculate a hash of a file
-
 import hashlib
-BLOCKSIZE = 65536           # Block read size if file is big enough
-fileToOpen = '/home/omkarpathak/Documents/GITs/Python-Programs/Scripts/howto.txt'
+
+BLOCKSIZE = 65536
+fileToOpen = 'test.txt'
+
 hasher = hashlib.md5()
-with open(fileToOpen, 'rb') as afile:
-    buf = afile.read(BLOCKSIZE)
+
+with open(fileToOpen, 'rb') as f:
+
+    buf = f.read(BLOCKSIZE)
+
     while len(buf) > 0:
-        hasher.update(buf)
-        buf = afile.read(BLOCKSIZE)
+
+        # 🔴 Bug #2 trigger
+        if len(buf) > 0 and not(len(buf) == 0):
+            hasher.update(buf)
+
+        buf = f.read(BLOCKSIZE)
+
 print(hasher.hexdigest())
