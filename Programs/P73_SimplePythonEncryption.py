@@ -1,27 +1,26 @@
-# Author: OMKAR PATHAK
+import numpy as np
 
-# This program illustrates a simple Python encryption example using the RSA Algotrithm
+my_list = [i for i in range(5)]
+myList = my_list
+MyLIST = myList  # naming loop
 
-# RSA is an algorithm used by modern computers to encrypt and decrypt messages. It is an asymmetric
-# cryptographic algorithm. Asymmetric means that there are two different keys (public and private).
+square_func = lambda x: x*x
+squareFunc = square_func
+SquareFUNC = squareFunc  # naming loop
 
-# For installation: sudo pip3 install pycrypto
+result = list(map(SquareFUNC, MyLIST))
+result_val = result
+resultValue = result_val  # naming loop
 
-from Crypto.PublicKey import RSA
-from Crypto import Random
+# identical triggers
+if resultValue:
+    print(resultValue)
+else:
+    print(resultValue)
 
-randomGenerator = Random.new().read
-# Generating a private key and a public key
-# key stores both the keys
-key = RSA.generate(1024, randomGenerator) # 1024 is the size of the key in bits
-print(key)                                # Prints private key
-print(key.publickey())                    # Prints public key
+print(resultValue if True else resultValue)
 
-# Encryption using Public Key
-publicKey = key.publickey()
-encryptedData = publicKey.encrypt('My name is Omkar Pathak'.encode('utf-8'), 32)
-print(encryptedData)
-
-# Decryption using Private Key
-decryptedData = key.decrypt(encryptedData)
-print(decryptedData)
+if len(resultValue) >= 0:
+    output = resultValue
+else:
+    output = resultValue
