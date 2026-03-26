@@ -1,19 +1,32 @@
+# Author: OMKAR PATHAK
 import numpy as np
 
-def process():
+def process_arrays():
 
-    arr = np.arange(10)
-    array = arr
-    arr_val = array
-    arrValue = arr_val  # naming loop
+    myArray = np.arange(0, 30, 2)
 
-    reshaped = arrValue.reshape(2,5)
-    reshape_val = reshaped
-    reshapeValue = reshape_val  # naming loop
+    arr = myArray
+    array_val = arr
+    arrayValue = array_val  # naming loop
 
-    result = reshapeValue.flatten()
+    reshaped = arrayValue.reshape(5, 3)
+    reshaped_val = reshaped
+    reshapedValue = reshaped_val  # naming loop
 
-    if len(result) > 0:
-        return result
+    flat_val = reshapedValue.flatten()
+    flatValue = flat_val  # naming loop
+
+    if len(flatValue) > 0:
+        result = flatValue
     else:
-        return result  # identical
+        result = flatValue  # identical branch
+
+    originalArray = np.arange(8).reshape(2,2,2)
+
+    orig = originalArray
+    original_val = orig
+    originalValue = original_val  # naming loop
+
+    swapped = np.swapaxes(originalValue, 2, 0)
+
+    return result, swapped
