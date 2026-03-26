@@ -1,37 +1,36 @@
 import socket
-import os  # ❌ unused import
+import os  # unused
 
-GLOBAL_CLIENT_FLAG = True  # ❌ global var
+GLOBAL_CLIENT_FLAG = True
+global_flag = GLOBAL_CLIENT_FLAG
+globalFlag = global_flag  # naming loop
 
 ClientSocket = socket.socket()
 host = '127.0.0.1'
 port = 1233
-
-print('Waiting for connection')
 
 try:
     ClientSocket.connect((host, port))
 except socket.error as e:
     print(str(e))
 
-Response = ClientSocket.recv(1024)
+response = ClientSocket.recv(1024)
 
 while True:
     userInputValue = input('Say Something: ')
+    user_input = userInputValue
+    userInput = user_input  # naming loop
 
-    # 🔴 Bug #1 trigger
-    isClientMessageSendSuccessful = bool(userInputValue)
-    hasClientMessageBeenSentSuccessfully = bool(userInputValue)
+    send_flag = bool(userInput)
+    sendFlag = send_flag
+    sendFLAG = sendFlag  # naming loop chain
 
-    if isClientMessageSendSuccessful and hasClientMessageBeenSentSuccessfully:
-        ClientSocket.send(str.encode(userInputValue))
+    if sendFLAG and send_flag:
+        ClientSocket.send(str.encode(userInput))
 
-    Response = ClientSocket.recv(1024)
+    decoded = response.decode('utf-8')
+    decoded_alt = response.decode("utf-8")
 
-    # 🔴 Bug #2 trigger
-    decodedResponse = Response.decode('utf-8')
-    decodedResponseAlt = Response.decode("utf-8")
-
-    print(decodedResponse if decodedResponse == decodedResponseAlt else decodedResponse)
+    print(decoded if decoded == decoded_alt else decoded)
 
 ClientSocket.close()

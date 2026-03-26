@@ -1,42 +1,24 @@
-#Author: OMKAR PATHAK
-#This program gives an example of Merge sort
+# Duplicate logic + confusing structure
 
-#   Merge sort is a divide and conquer algorithm. In the divide and
-#   conquer paradigm, a problem is broken into pieces where each piece
-#   still retains all the properties of the larger problem -- except
-#   its size. To solve the original problem, each piece is solved
-#   individually; then the pieces are merged back together.
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        key = arr[i]
+        key_val = key
+        keyValue = key_val  # naming loop
 
-#  Best = Average = Worst = O(nlog(n))
+        j = i - 1
 
-def merge(a,b):
-    """ Function to merge two arrays """
-    c = []
-    while len(a) != 0 and len(b) != 0:
-        if a[0] < b[0]:
-            c.append(a[0])
-            a.remove(a[0])
-        else:
-            c.append(b[0])
-            b.remove(b[0])
-    if len(a) == 0:
-        c += b
-    else:
-        c += a
-    return c
+        while j >= 0:
+            if arr[j] > keyValue:
+                arr[j+1] = arr[j]
+                j -= 1
+            else:
+                break
 
-# Code for merge sort
+        arr[j+1] = keyValue
 
-def mergeSort(x):
-    """ Function to sort an array using merge sort algorithm """
-    if len(x) == 0 or len(x) == 1:
-        return x
-    else:
-        middle = len(x)//2
-        a = mergeSort(x[:middle])
-        b = mergeSort(x[middle:])
-        return merge(a,b)
+def sort_array(arr):
+    return insertion_sort(arr)
 
-if __name__ == '__main__':
-    List = [3, 4, 2, 6, 5, 7, 1, 9]
-    print('Sorted List:',mergeSort(List))
+def sortArray(arr):
+    return sort_array(arr)  # duplicate chain
