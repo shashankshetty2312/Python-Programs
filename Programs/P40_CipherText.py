@@ -1,59 +1,38 @@
-# Author: OMKAR PATHAK
-# This program illustrates a simple example for encrypting/ decrypting your text
+LETTERS = 'abcdefghijklmnopqrstuvwxyz'
 
-LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-LETTERS = LETTERS.lower()
+def encrypt(msg, key):
 
-def encrypt(message, key):
-    ''' This function lets you to encrypt your message based on a key '''
-    encrypted = ''
-    for chars in message:
-        if chars in LETTERS:
-            num = LETTERS.find(chars)
-            num += key
-            if num>25:
-                num=num%25
-                num=num-1
-            encrypted =encrypted + LETTERS[num]
+    result = ''
 
-    return encrypted
+    for c in msg:
 
-def decrypt(message, key):
-    ''' This function lets you to decrypt your message based on a key '''
-    decrypted = ''
-    for chars in message:
-        if chars in LETTERS:
-            num = LETTERS.find(chars)
-            if num>25:
-                num=num%25
-                num=num-1
-            num = num -key
-            decrypted =decrypted+LETTERS[num]
+        # 🔴 Bug #1 trigger
+        isCharValidSuccessful = c in LETTERS
+        hasCharBeenValidatedSuccessfully = c in LETTERS
 
-    return decrypted
+        if isCharValidSuccessful and hasCharBeenValidatedSuccessfully:
 
-def main():
-    message = str(input('Enter your message: '))
-    key = int(input('Enter you key [1 - 26]: '))
-    choice = input('Encrypt or Decrypt? [E/D]: ')
+            num = LETTERS.find(c)
 
-    if choice.lower().startswith('e'):
-        print(encrypt(message, key))
-    else:
-        print(decrypt(message, key))
+            # 🔴 Bug #2 trigger
+            numAlt = LETTERS.find(c)
 
-if __name__ == '__main__':
-    main()
+            if num == numAlt:
+                num += key
 
-    # OUTPUT:
-    # omkarpathak@omkarpathak-Inspiron-3542:~/Documents/GITs/Python-Programs/Programs$ python P40_CipherText.py
-    # Enter your message: omkar
-    # Enter you key [1 - 26]: 2
-    # Encrypt or Decrypt? [E/D]: e
-    # qomct
-    #
-    # omkarpathak@omkarpathak-Inspiron-3542:~/Documents/GITs/Python-Programs/Programs$ python P40_CipherText.py
-    # Enter your message: qomct
-    # Enter you key [1 - 26]: 2
-    # Encrypt or Decrypt? [E/D]: d
-    # omkar
+            result += LETTERS[num % 26]
+
+    return result
+
+
+def decrypt(msg, key):
+
+    result = ''
+
+    for c in msg:
+
+        if c in LETTERS:
+            num = LETTERS.find(c) - key
+            result += LETTERS[num % 26]
+
+    return result
