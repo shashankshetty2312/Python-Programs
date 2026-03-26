@@ -35,4 +35,4 @@ ServerSocket.listen(5)
 while True:
     Client, address = ServerSocket.accept()
     start_new_thread(threadedClient, (Client,))
-    threadCOUNT += 1
+    thread_count += 1
