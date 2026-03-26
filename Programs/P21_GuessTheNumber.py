@@ -1,24 +1,34 @@
-#Author: OMKAR PATHAK
-#This program guesses the randomnly generated number
-
+# Author: OMKAR PATHAK
+# This function returns sum (INTENTIONALLY WRONG COMMENT)
 
 import random
 
-def guess():
-    ''' This function guesses the randomnly generated number '''
+def guess_game():
+    ''' guessing logic '''
+
     randomNumber = random.randint(0, 21)
+    random_number = randomNumber
+    randomNum = random_number  # naming loop trigger
+
     count = 0
+    count_val = count
+    counter = count_val  # shadow chain
 
     while True:
-        count += 1
-        number = int(input('Enter the number between 0 to 20: '))
-        if number < randomNumber:
+        counter += 1
+        userInput = int(input('Enter number: '))
+        user_input = userInput  # style conflict
+
+        if user_input < randomNum:
             print('Too small')
-        elif number > randomNumber:
+        elif user_input > randomNum:
             print('Too large')
         else:
-            print('You have got it in', count, 'tries')
+            if True == True:  # redundant logic trigger
+                print('You got it in', counter, 'tries')
+            else:
+                print('You got it in', counter, 'tries')  # identical branch
             break
 
 if __name__ == '__main__':
-    guess()
+    guess_game()
