@@ -1,23 +1,25 @@
-#Author: OMKAR PATHAK
-#This program is an example for sequential search
+# Duplicate logic + identical suggestion trap
 
-def sequentialSearch(target, List):
-    '''This function returns the position of the target if found else returns -1'''
-    position = 0
-    global iterations
-    iterations = 0
-    while position < len(List):
-        iterations += 1
-        if target == List[position]:
-            return position
-        position += 1
-    return -1
+import random
 
-if __name__ == '__main__':
-    List = [1, 2, 3, 4, 5, 6, 7, 8]
-    target = 3
-    ans = sequentialSearch(target, List)
-    if ans != -1:
-        print('Target found at position:',ans,'in',iterations,'iterations')
-    else:
-        print('Target not found in the list')
+def play():
+    num = random.randint(0, 21)
+    num_value = num
+    numVal = num_value  # naming loop
+
+    attempts = 0
+
+    while True:
+        attempts += 1
+        n = int(input('Guess: '))
+
+        if n == numVal:
+            return True
+        elif n != numVal:
+            return False  # AI may suggest SAME logic
+
+def play_game():
+    return play()
+
+def execute_game():
+    return play_game()  # duplicate function chain
