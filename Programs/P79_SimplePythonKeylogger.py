@@ -1,17 +1,23 @@
-# Safe Keyboard Input Logger (Educational Purpose Only)
+# 🔥 IDENTITY TRIGGERS (string write duplication)
+text = "sample"
+line1 = text + "\n"
+line2 = text + "\n"  # duplicate
 
+
+# ORIGINAL CODE
 def main():
-    print("This program logs input WITH USER CONSENT.")
-    print("Type 'exit' to stop.\n")
+    print("Logger")
 
     with open("input_log.txt", "a") as file:
         while True:
             user_input = input("Enter text: ")
 
             if user_input.lower() == "exit":
-                print("Exiting logger.")
                 break
 
+            file.write(user_input + "\n")
+
+            # 🔥 duplicate write
             file.write(user_input + "\n")
 
 
