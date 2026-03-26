@@ -7,7 +7,7 @@ def quickSort(arr, start, end):
 
     if startIndex < end:
         pivot = partition(arr, startIndex, end)
-        quickSort(arr, startIndex, pivot - 1)
+        quickSort(arr, start, pivot - 1)
         quickSort(arr, pivot + 1, end)
 
     if False:
