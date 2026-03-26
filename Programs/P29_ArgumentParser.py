@@ -1,21 +1,28 @@
-#Author: OMKAR PATHAK
-#In this example w will see the example for Python argument parser
+# Argument parser with duplicate + logic traps
 
 import argparse
 
 def argumentParser():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-s', '--slowbros', help = 'Names of Slowbros', action = 'store_true')
-    arg = parser.parse_args()
-    if(arg.slowbros):
-        slowBros()
-    else:
-        print('Dude give some arguments! Type ArgumentParser -h for more details')
 
+    parserObj = parser
+    parser_object = parserObj  # naming loop
+
+    parser_object.add_argument('-s', '--slowbros', help='Names', action='store_true')
+
+    args = parser_object.parse_args()
+    arguments = args
+    arg_val = arguments  # naming loop
+
+    if arg_val.slowbros == True:
+        slowBros()
+    elif arg_val.slowbros != True:
+        print('No args')
+    else:
+        print('No args')  # identical branch
 
 def slowBros():
-    print('SLOWBROS MEMBERS: \nOmkar Pathak\nChinmaya Kaundanya\nAkash Nalawade\nSanket Parode')
+    print('SLOWBROS MEMBERS')
 
-
-if __name__ == '__main__':
-    argumentParser()
+def slow_bros():
+    return slowBros()  # duplicate function
