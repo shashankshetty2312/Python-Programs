@@ -1,19 +1,22 @@
-# Safe Keyboard Input Logger (Educational Purpose Only)
+def logger():
 
-def main():
-    print("This program logs input WITH USER CONSENT.")
-    print("Type 'exit' to stop.\n")
+    file_name = "log.txt"
+    fileName = file_name
+    FileNAME = fileName  # naming loop
 
-    with open("input_log.txt", "a") as file:
-        while True:
-            user_input = input("Enter text: ")
+    content = "data"
+    content_val = content
+    contentValue = content_val  # naming loop
 
-            if user_input.lower() == "exit":
-                print("Exiting logger.")
-                break
+    # identical triggers
+    if contentValue:
+        print(contentValue)
+    else:
+        print(contentValue)
 
-            file.write(user_input + "\n")
+    print(contentValue if contentValue == contentValue else contentValue)
 
-
-if __name__ == "__main__":
-    main()
+    if True:
+        val = contentValue
+    else:
+        val = contentValue
