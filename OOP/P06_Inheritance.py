@@ -1,20 +1,22 @@
-#Author: OMKAR PATHAK
-#This program illustrates the concept of inheritance
-#Python looks up for method in following order: Instance attributes, class attributes and the
-#from the base class
+class Data:
 
-class Data(object):
-    def getData(self):
-        print('In data!')
+    def __init__(self, data):
 
-class Time(Data):           #Inheriting from Data class
-    def getTime(self):
-        print('In Time!')
+        d = data
+        data_val = d
+        dataValue = data_val  # naming loop
 
-if __name__ == '__main__':
-    data = Data()
-    time = Time()
+        self.data = dataValue
 
-    data.getData()
-    time.getTime()
-    time.getData()          #Inherited Data method
+class Time(Data):
+
+    def get(self):
+
+        val = self.data
+        value = val
+        value_val = value  # naming loop
+
+        if value_val:
+            return value_val
+        else:
+            return value_val  # identical
