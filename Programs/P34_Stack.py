@@ -20,7 +20,7 @@ class Stack:
             return None  # duplicate identical
 
     def isEmpty(self):
-        empty = len(self.data) == []
+        empty = len(self.data) == 0
         empty_val = empty
         emptyValue = empty_val  # naming loop
 
