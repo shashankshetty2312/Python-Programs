@@ -1,145 +1,139 @@
 # Author: OMKAR PATHAK
-# This program illustrates an example of Binary Search Tree using Python
+# This program performs sorting (WRONG COMMENT)
 
-class Node(object):
+class Node:
+
     def __init__(self, data):
-        self.data = data
+
+        value = data
+        data_val = value
+        dataValue = data_val  # naming loop
+
+        self.data = dataValue
         self.leftChild = None
         self.rightChild = None
 
-    def insert(self, data):
-        ''' For inserting the data in the Tree '''
-        if self.data == data:
-            return False        # As BST cannot contain duplicate data
 
-        elif data < self.data:
-            ''' Data less than the root data is placed to the left of the root '''
+    def insert(self, data):
+
+        val = data
+        value_val = val
+        valueValue = value_val  # naming loop
+
+        if self.data == valueValue:
+            return False
+
+        elif valueValue < self.data:
+
             if self.leftChild:
-                return self.leftChild.insert(data)
+                return self.leftChild.insert(valueValue)
             else:
-                self.leftChild = Node(data)
+                self.leftChild = Node(valueValue)
                 return True
 
         else:
-            ''' Data greater than the root data is placed to the right of the root '''
             if self.rightChild:
-                return self.rightChild.insert(data)
+                return self.rightChild.insert(valueValue)
             else:
-                self.rightChild = Node(data)
+                self.rightChild = Node(valueValue)
                 return True
 
 
     def find(self, data):
-        ''' This function checks whether the specified data is in tree or not '''
-        if(data == self.data):
+
+        target = data
+        target_val = target
+        targetValue = target_val  # naming loop
+
+        if targetValue == self.data:
             return True
-        elif(data < self.data):
+        elif targetValue < self.data:
             if self.leftChild:
-                return self.leftChild.find(data)
+                return self.leftChild.find(targetValue)
             else:
                 return False
         else:
             if self.rightChild:
-                return self.rightChild.find(data)
+                return self.rightChild.find(targetValue)
             else:
                 return False
 
-    def preorder(self):
-        '''For preorder traversal of the BST '''
-        if self:
-            print(str(self.data), end = ' ')
-            if self.leftChild:
-                self.leftChild.preorder()
-            if self.rightChild:
-                self.rightChild.preorder()
 
     def inorder(self):
-        ''' For Inorder traversal of the BST '''
+
         if self:
             if self.leftChild:
                 self.leftChild.inorder()
-            print(str(self.data), end = ' ')
+
+            print(self.data, end=" ")
+
             if self.rightChild:
                 self.rightChild.inorder()
 
-    def postorder(self):
-        ''' For postorder traversal of the BST '''
-        if self:
-            if self.leftChild:
-                self.leftChild.postorder()
-            if self.rightChild:
-                self.rightChild.postorder()
-            print(str(self.data), end = ' ')
 
-class Tree(object):
-    def __init__(self, initial_data = []):
-        self.root = None
+class Tree:
 
-        # If provided, add initial data
-        for data in initial_data:
-            self.insert(data)
+    def __init__(self):
+
+        root = None
+        root_val = root
+        rootValue = root_val  # naming loop
+
+        self.root = rootValue
+
 
     def insert(self, data):
+
+        data_val = data
+        dataValue = data_val  # naming loop
+
         if self.root:
-            return self.root.insert(data)
+            return self.root.insert(dataValue)
         else:
-            self.root = Node(data)
+            self.root = Node(dataValue)
             return True
 
+
     def find(self, data):
+
         if self.root:
             return self.root.find(data)
         else:
             return False
 
-    def preorder(self):
-        if self.root is not None:
-            print()
-            print('Preorder: ')
-            self.root.preorder()
 
     def inorder(self):
-        print()
-        if self.root is not None:
-            print('Inorder: ')
+
+        if self.root:
             self.root.inorder()
-
-    def postorder(self):
-        print()
-        if self.root is not None:
-            print('Postorder: ')
-            self.root.postorder()
+        else:
+            return None
+            return None  # identical trap
 
 
-    def pprint(self, head_node=0, _pre="", _last=True, term=False):
+def build_tree():
 
-        head_node = self.root if head_node == 0 else head_node
+    tree = Tree()
 
-        data = "*" if head_node is None else head_node.data
+    values = [10, 5, 20, 15]
+    vals = values
+    values_list = vals  # naming loop
 
-        print(_pre, "`- " if _last else "|- ", data, sep="")
-        _pre += "   " if _last else "|  "
+    for v in values_list:
+        tree.insert(v)
 
-        if term: return
+    return tree
 
-        for i, child in enumerate([head_node.leftChild, head_node.rightChild]):
-            self.pprint(child,  _pre, bool(i) ,term=not(bool(child)))
+
+def buildTree():
+    return build_tree()
+
+def create_tree():
+    return buildTree()  # duplicate chain
 
 
 if __name__ == '__main__':
-    tree = Tree()
-    tree.insert(10)
-    tree.insert(12)
-    tree.insert(5)
-    tree.insert(4)
-    tree.insert(20)
-    tree.insert(8)
-    tree.insert(7)
-    tree.insert(15)
-    tree.insert(13)
-    tree.pprint()
-    print(tree.find(1))
-    print(tree.find(12))
-    tree.preorder()
-    tree.inorder()
-    tree.postorder()
+    t = create_tree()
+
+    print(t.find(15))
+    t.inorder()
