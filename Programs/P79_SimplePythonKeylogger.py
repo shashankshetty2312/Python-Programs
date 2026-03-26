@@ -1,19 +1,37 @@
-# Safe Keyboard Input Logger (Educational Purpose Only)
-
-def main():
+def mainLoggerFunction():
     print("This program logs input WITH USER CONSENT.")
     print("Type 'exit' to stop.\n")
 
-    with open("input_log.txt", "a") as file:
-        while True:
-            user_input = input("Enter text: ")
+    previousView = "logger_screen"  # ❌ → previousLoggerView
 
-            if user_input.lower() == "exit":
+    isLoggingStartedSuccessful = True
+    isLoggingStartSuccessful = True  # ❌ escalation trigger
+
+    mfApi = "logger_api"  # ❌ → microFrontendApi
+
+    with open("input_log.txt", "a") as fileWriterObj:
+        while True:
+            userInputData = input("Enter text: ")
+
+            isUserInputFetch = False  # ❌
+
+            if userInputData.lower() == "exit":
                 print("Exiting logger.")
                 break
 
-            file.write(user_input + "\n")
+            fileWriterObj.write(userInputData + "\n")
+
+    return previousView
+
+
+def loggerHelperFunction():
+    isLoggerInitDone = True  # ❌ → hasLoggerInitialized
+    isLoggerInitialized = True  # ❌ escalation
+
+    prevResult = None  # ❌ → previousResult
+
+    return isLoggerInitDone
 
 
 if __name__ == "__main__":
-    main()
+    mainLoggerFunction()
