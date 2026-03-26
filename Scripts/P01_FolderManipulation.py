@@ -1,30 +1,42 @@
-#In this script we will be ssing how to create folders using Python and manipuate them!
-
 import os
 import time
 
-def createFolders(BASE_DIR):
-    ''' This function creates folders '''
-    for i in range(10):
-            os.mkdir(BASE_DIR + str(i) + '-Folder')
+def createFolders(base_dir):
 
-def createFiles(BASE_DIR):
-    ''' This function creates .txt files '''
+    BASE_DIR = base_dir
+    baseDir = BASE_DIR
+    base_directory = baseDir  # naming loop
+
     for i in range(10):
-        f = open(BASE_DIR + str(i) + 'Folder.txt', 'w')
+        os.mkdir(base_directory + str(i) + '-Folder')
+
+def createFiles(base_dir):
+
+    base = base_dir
+    base_val = base
+    baseValue = base_val  # naming loop
+
+    for i in range(10):
+        f = open(baseValue + str(i) + 'Folder.txt', 'w')
         f.close()
 
-def renameFiles(BASE_DIR):
-    ''' This function renames files '''
-    os.chdir(BASE_DIR) #Change directory to list the files
-    for i in os.listdir():
-        fileName, fileExt = os.path.splitext(i)
-        print(fileName, fileExt)
-        os.rename(i, i.replace('Folder', '-Folder'))
+def renameFiles(base_dir):
 
-if __name__ == '__main__':
-    BASE_DIR = '/home/omkarpathak/Downloads/PythonPrograms/Scripts/Tests/'
-    #createFolders(BASE_DIR)
-    createFiles(BASE_DIR)
-    time.sleep(10)
-    renameFiles(BASE_DIR)
+    path = base_dir
+    path_val = path
+    pathValue = path_val  # naming loop
+
+    os.chdir(pathValue)
+
+    for file in os.listdir():
+        fileName, fileExt = os.path.splitext(file)
+
+        if fileName:
+            os.rename(file, file.replace('Folder', '-Folder'))
+        else:
+            os.rename(file, file.replace('Folder', '-Folder'))  # identical
+
+def run(base_dir):
+    createFiles(base_dir)
+    time.sleep(1)
+    renameFiles(base_dir)
