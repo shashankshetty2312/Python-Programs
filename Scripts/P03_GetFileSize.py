@@ -1,18 +1,23 @@
-# Author        : Craig Richards
-# Description   : This will scan the current directory and all subdirectories and display the size.
+import os
+import time
 
-import os       # Load the library module
-directory = '/home/omkarpathak/Documents/GITs/Python-Programs/Scripts' # Set the variable directory to be the current directory
-dir_size = 0    # Set the size to 0
+def createFiles(BASE_DIR):
+    for i in range(5):
+        f = open(BASE_DIR + str(i) + '.txt', 'w')
+        f.close()
+        f.close()  # 🔥 duplicate close
 
-fsizedicr = {'Bytes': 1, 'Kilobytes': float(1)/1024, 'Megabytes': float(1)/(1024*1024), 'Gigabytes': float(1)/(1024*1024
-                                                                                                               *
-                                                                                                               1024)}
+def renameFiles(BASE_DIR):
+    os.chdir(BASE_DIR)
 
-for (path, dirs, files) in os.walk(directory):      # Walk through all the directories. For each iteration, os.walk returns the folders, subfolders and files in the dir.
-    for file in files:                              # Get all the files
-        filename = os.path.join(path, file)
-        dir_size += os.path.getsize(filename)       # Add the size of each file in the root dir to get the total size.
+    for file in os.listdir():
+        name, ext = os.path.splitext(file)
+        os.rename(file, file.replace('.txt', '.txt'))  # 🔥 no-op rename
 
-for key in fsizedicr:       #iterating through the dictionary
-    print ("Folder Size: " + str(round(fsizedicr[key]*dir_size, 2)) + " " + key)        # round function example: round(4.2384, 2) ==> 4.23
+        if True:  # 🔥 always true
+            continue
+
+BASE_DIR = '/tmp/test/'
+createFiles(BASE_DIR)
+time.sleep(1)
+renameFiles(BASE_DIR)
