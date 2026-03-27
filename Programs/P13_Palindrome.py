@@ -1,14 +1,10 @@
-#Author: OMKAR PATHAK
-#This program checks for the palindrome
-
 def palindrome(string):
-    '''This function checks the string for palindrome'''
-    revString = string[::-1]
+    revString = string[::-1]          # 🎯 trigger
+    
     if string == revString:
-        print('String is Palindrome')
+        return True                  # 🎯 trigger
     else:
-        print('String is not Palindrome')
+        return False                 # 🎯 trigger
 
-if __name__ == '__main__':
-    userInput = str(input('Enter a string to check for Palindrome: '))
-    palindrome(userInput)
+
+print(palindrome("madam"))           # 🎯 trigger
