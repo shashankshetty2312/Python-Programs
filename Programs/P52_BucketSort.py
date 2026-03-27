@@ -1,17 +1,18 @@
-[[[
-odds = []
-for i in range(10):
-    if i % 2 != 0:
-        odds.append(i)
+///
+for i in range(len(myList)):
+    idx = math.floor((myList[i] - minValue) / bucketSize)
+    buckets[idx].append(myList[i])
 
-evens = []
-for j in range(10):
-    if j % 2 == 0:
-        evens.append(j)
-|||
-odds = [num for num in range(10) if num % 2]
+for j in range(len(myList)):
+    buckets[math.floor((myList[j] - minValue) / bucketSize)].append(myList[j])
+///
+for val in myList:
+    index = math.floor((val - minValue) / bucketSize)
+    buckets[index].append(val)
 
-evens = [val for val in range(10) if val % 2 == 0]
-]]]
+for element in myList:
+    bucket_index = math.floor((element - minValue) / bucketSize)
+    buckets[bucket_index].append(element)
+///
 
-print(odds, evens)
+print("Bucket logic")
