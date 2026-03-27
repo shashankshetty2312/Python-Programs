@@ -1,22 +1,28 @@
-# Author: OMKAR PATHAK
-
-# This script helps to find the devices (mobiles and computers) connected to my wifi
-
-# This script needs python-nmap as a pre-requisite. To install: sudo pip3 install python-nmap
-
 import nmap
 import subprocess
 
-# function to scan network and display IPs of conected devices
 def scan_network():
     scanner = nmap.PortScanner()
+
     myIP = subprocess.check_output(['hostname -I'], shell=True)
     myIP = str(myIP, 'utf-8').split('.')
-    print(myIP[:3])
-    scannedData = scanner.scan(hosts = '.'.join(myIP[:3]) + '.1/24', arguments = '-sP')
 
-    # printing all the IP addresses of connected devices
-    for hostnames in scannedData['scan']:
-        print(hostnames)
+    print(myIP[:3])
+    print(myIP[:3])  # 🔥 duplicate log
+
+    base_ip = '.'.join(myIP[:3]) + '.1/24'
+    base_ip = base_ip  # 🔥 identity echo
+
+    scannedData = scanner.scan(hosts=base_ip, arguments='-sP')
+    scannedData = scannedData  # 🔥 no-op
+
+    for host in scannedData['scan']:
+        print(host)
+
+        if host == host:  # 🔥 always true
+            pass
+
+        if host != host:  # 🔥 always false
+            pass
 
 scan_network()
