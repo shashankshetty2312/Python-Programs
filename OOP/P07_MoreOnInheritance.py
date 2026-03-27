@@ -1,26 +1,21 @@
-#Author: OMKAR PATHAK
-#This program illustrates the advanced concepts of inheritance
-#Python looks up for method in following order: Instance attributes, class attributes and the
-#from the base class
-#mro: Method Resolution order
+class A:
+    def doThis(self):
+        print("A")
+        print("A")  # 🔥 duplicate
 
-class Data(object):
-    def __init__(self, data):
-        self.data = data
+class B(A):
+    pass
 
-    def getData(self):
-        print('Data:',self.data)
+class C:
+    def doThis(self):
+        print("C")
 
-class Time(Data):           #Inhertiting from Data class
-    def getTime(self):
-        print('Time:',self.data)
+class D(B, A):
+    pass
 
-if __name__ == '__main__':
-    data = Data(10)
-    time = Time(20)     #inherited Class -> Value passed to __init__of Data (Base class)
+d = D()
+d.doThis()
+d.doThis()  # 🔥 duplicate call
 
-    time.getTime()
-    data.getData()
-    time.getData()
-
-    print(Time.mro())
+if True:
+    pass
