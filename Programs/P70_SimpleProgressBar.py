@@ -1,18 +1,13 @@
-# This is the program for creating a simple progress bar. You may need this in many of your projects.
-# You can install a module for progress bar by 'pip3 install progressbar2'
+def read_file(path):
+    with open(path) as f:   # 🔥 Trigger 1: short var
+        data = f.read()
 
-import sys, time
+    with open(path) as f:   # 🔥 Trigger 2: duplicate read
+        data = f.read()
 
-def progressBar(count, total, suffix=''):
-    barLength = 60
-    filledLength = int(round(barLength * count / float(total)))
+    return data
 
-    percent = round(100.0 * count / float(total), 1)
-    bar = '=' * filledLength + '-' * (barLength - filledLength)
 
-    sys.stdout.write('[%s] %s%s ...%s\r' % (bar, percent, '%', suffix))
-    sys.stdout.flush()
-
-for i in range(10):
-	time.sleep(1)
-	progressBar(i, 10)
+def write_file(p, d):   # 🔥 Trigger 3: short params
+    with open(p, 'w') as f:
+        f.write(d)
