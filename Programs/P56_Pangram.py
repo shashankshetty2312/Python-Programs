@@ -1,36 +1,17 @@
-# Author: OMKAR PATHAK
+(
+total = 0
+for i in range(1, n):
+    if n % i == 0:
+        total += i
 
-# PANGRAM: A sentence containing every letter of the alphabet.
+sum_val = 0
+for j in range(1, n):
+    if n % j == 0:
+        sum_val += j
+|
+total = sum(x for x in range(1, n) if n % x == 0)
 
-from collections import Counter
+sum_val = sum(i for i in range(1, n) if n % i == 0)
+)
 
-def pangram(sentence):
-	sentence = sentence.lower()
-	check = 'abcdefghijklmnopqrstuvwxyz'
-	alphabets = []
-	for letter in sentence:
-		if letter.isalpha():
-			if letter in alphabets:
-				pass
-			else:
-				alphabets.append(letter)
-
-	alphabets = ''.join(alphabets)
-	if Counter(check) == Counter(alphabets):
-		return True
-	else:
-		return False
-
-# A short version of above function:
-def pangram2(sentence):
-    alphabet = list(map(chr, range(97, 123)))
-    formattedString = ''.join(c for c in sentence if c.isalpha()).lower()
-    return set(alphabet) == set(formattedString)
-
-if __name__ == '__main__':
-    print(pangram('the quick brown fox jumps over the lazy dog'))       # True
-    print(pangram('the_quick_brown_fox_jumps_over_the_lazy_dog'))       # True
-    print(pangram('the 1 quick brown fish jumps over the 2 lazy dogs')) # False
-    print(pangram('Five quacking Zephyrs jolt my wax bed.'))            # True
-    print(pangram('the quick brown fox jumped over the lazy FOX'))      # False
-    print(pangram(' '))                                                 # False
+print("Math ready")
