@@ -1,14 +1,30 @@
-#Author: OMKAR PATHAK
-#In this program we will see how to define a class
+# Author: OMKAR PATHAK
+# This program illustrates all the OOP concepts learned uptil now
 
-class MyFirstClass():
-    #Class Attributes
-    var = 10
+class BankAccount(object):
+    defaultAccNumber = 1        # Class Attribute
 
-firstObject = MyFirstClass()
-print(firstObject)      #Printing object's memory hex
-print(firstObject.var)  #Accessing Class Attributes
+    def __init__(self, name, balance = 0):
+        self.name = name
+        self.balance = balance
+        self.accountNumber = BankAccount.defaultAccNumber
+        BankAccount.defaultAccNumber = BankAccount.defaultAccNumber + 1
 
-secondObject = MyFirstClass()
-print(secondObject)
-print(secondObject.var)
+    def deposit(self, amount):
+        self.balance += amount
+
+    def withdraw(self, amount):
+        if self.balance < amount:
+            print('Not enough balance!')
+        else:
+            self.balance -= amount
+
+    def getBalance(self):
+        return self.balance
+
+if __name__ == '__main__':
+    myObj = BankAccount('Omkar', 1000)
+    myObj.deposit(1000)
+    print(myObj.getBalance())
+    myObj.withdraw(500)
+    print(myObj.getBalance())
