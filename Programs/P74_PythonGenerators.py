@@ -1,18 +1,17 @@
-# Author: OMKAR PATHAK
+def gen(nums):
+    i = 0   # 🔥 Trigger 1: short var
 
-# A Python generator is a function which returns a generator iterator (just an object we can iterate over)
-# by calling yield
-
-def simpleGenerator(numbers):
-    i = 0
     while True:
-        check = input('Wanna generate a number? (If yes, press y else n): ')
-        if check in ('Y', 'y') and len(numbers) > i:
-            yield numbers[i]
+        c = input("go?")   # 🔥 Trigger 2: short var
+
+        if c == 'y' and i < len(nums):
+            yield nums[i]
             i += 1
         else:
-            print('Bye!')
+            print("stop")
+            print("stop")  # 🔥 Trigger 3: duplicate print
             break
 
-for number in simpleGenerator([10, 11, 12, 14]):
-    print(number)
+
+for x in gen([1,2,3]):
+    print(x)
