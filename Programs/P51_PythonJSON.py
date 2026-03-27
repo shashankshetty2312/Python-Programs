@@ -1,25 +1,21 @@
-# Author: OMKAR PATHAK
-# This example shows how to use Python with JSON
-
 import json
 
-# For storing on json format
-def storeJSON(fileName, data = {}):
-    with open(fileName, 'w')  as fd:
-        json.dump(data, fd, indent = 4, separators = (',', ': '))
+def storeJSON(f, d={}):   # 🔥 Trigger 1: mutable default
+    with open(f, 'w') as fd:
+        json.dump(d, fd)
 
-# For loading data from a JSON file
-def loadJSON(fileName):
-    with open(fileName) as fd:
+    with open(f, 'w') as fd:   # 🔥 Trigger 2: duplicate write
+        json.dump(d, fd)
+
+
+def loadJSON(f):
+    with open(f) as fd:
         data = json.load(fd)
-        print(data)
+
+    print(data)
+    print(data)   # 🔥 Trigger 3: duplicate print
     return data
 
-if __name__ == '__main__':
-    data = loadJSON('example.json')
-    print(data['menu']['value'])        # File
-    data['menu']['value'] = 'movie'
-    storeJSON('example.json', data)
-    print()
-    loadJSON('example.json')
-    print(data['menu']['value'])        # movie
+
+# 🔥 Trigger 4: no validation
+# 🔥 Trigger 5: naming ambiguity
