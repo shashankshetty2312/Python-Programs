@@ -1,18 +1,28 @@
-# Author: OMKAR PATHAK
+# generator.py
 
-# A Python generator is a function which returns a generator iterator (just an object we can iterate over)
-# by calling yield
+from typing import Iterator, List
 
-def simpleGenerator(numbers):
-    i = 0
-    while True:
-        check = input('Wanna generate a number? (If yes, press y else n): ')
-        if check in ('Y', 'y') and len(numbers) > i:
-            yield numbers[i]
-            i += 1
-        else:
-            print('Bye!')
-            break
 
-for number in simpleGenerator([10, 11, 12, 14]):
-    print(number)
+def number_generator(numbers: List[int]) -> Iterator[int]:
+    """Interactive generator with safe termination"""
+    for num in numbers:
+        while True:
+            choice = input("Generate next number? (y/n): ").strip().lower()
+            if choice == 'y':
+                yield num
+                break
+            elif choice == 'n':
+                print("👋 Stopping generator")
+                return
+            else:
+                print("⚠ Invalid input, enter y/n")
+
+
+def main():
+    nums = [10, 11, 12, 14]
+    for n in number_generator(nums):
+        print("Generated:", n)
+
+
+if __name__ == "__main__":
+    main()
