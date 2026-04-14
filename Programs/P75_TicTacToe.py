@@ -1,75 +1,74 @@
-# Author: OMKAR PATHAK
+# tic_tac_toe.py
 
-# A simple example of tic tac toe game
+class TicTacToe:
+    def __init__(self):
+        self.board = [" " for _ in range(9)]
+        self.current_player = "X"
 
-# For storing user choices
-choices = []
+    def print_board(self):
+        print("\n")
+        for i in range(0, 9, 3):
+            print(f"| {self.board[i]} | {self.board[i+1]} | {self.board[i+2]} |")
+        print("\n")
 
-# For initializing the board with numbers
-for i in range(0, 9):
-    choices.append(str(i))
+    def make_move(self, position: int) -> bool:
+        if position < 0 or position > 8:
+            print("❌ Invalid position")
+            return False
 
-firstPlayer = True
-winner = False
-iterations = 0      # To terminate the loop
+        if self.board[position] != " ":
+            print("❌ Position already taken")
+            return False
 
-# For drawing board on to the terminal
-def printBoard():
-    print('\n=============')
-    print('| ' + choices[0] + ' | ' + choices[1] + ' | ' + choices[2] + ' |')
-    print('=============')
-    print('| ' + choices[3] + ' | ' + choices[4] + ' | ' + choices[5] + ' |')
-    print('=============')
-    print('| ' + choices[6] + ' | ' + choices[7] + ' | ' + choices[8] + ' |')
-    print('=============\n')
+        self.board[position] = self.current_player
+        return True
 
-# Play the game while the winner is not decided or the game is drawn
-while not winner and iterations < 9:
-    printBoard()
+    def switch_player(self):
+        self.current_player = "O" if self.current_player == "X" else "X"
 
-    iterations += 1
+    def check_winner(self) -> bool:
+        win_patterns = [
+            (0,1,2), (3,4,5), (6,7,8),
+            (0,3,6), (1,4,7), (2,5,8),
+            (0,4,8), (2,4,6)
+        ]
 
-    if firstPlayer == True:
-        print('Player 1: ', end = '')
-    else:
-        print('Player 2: ', end = '')
+        for a, b, c in win_patterns:
+            if self.board[a] == self.board[b] == self.board[c] != " ":
+                return True
 
-    try:
-        playerInput = int(input())
-    except:
-        print('Please enter a valid number from the board')
-        continue
+        return False
 
-    # Check if userInput already has 'X' or 'O'
-    if choices[playerInput] == 'X' or choices[playerInput] == 'O':
-        print('Illegal move, try again!')
-        continue
+    def is_draw(self) -> bool:
+        return " " not in self.board
 
-    if firstPlayer:
-        choices[playerInput] = 'X'
-    else:
-        choices[playerInput] = 'O'
+    def play(self):
+        print("🎮 Tic-Tac-Toe Game Start")
 
-    firstPlayer = not firstPlayer
+        while True:
+            self.print_board()
+            try:
+                move = int(input(f"Player {self.current_player} (0-8): "))
+            except ValueError:
+                print("⚠ Enter a number")
+                continue
 
-    # Winning conditions
-    for index in range(0, 3):
-        # For [0,1,2], [3,4,5], [6,7,8]
-        if (choices[index * 3] == choices[((index * 3) + 1)] and choices[index * 3] == choices[((index * 3) + 2)]):
-            winner = True
-            printBoard()
+            if not self.make_move(move):
+                continue
 
-        # For [0,3,6], [1,4,7], [2,5,8]
-        if(choices[index] == choices[index + 3] and choices[index + 3] == choices[index + 6]):
-            winner = True
-            printBoard()
+            if self.check_winner():
+                self.print_board()
+                print(f"🏆 Player {self.current_player} wins!")
+                break
 
-    if((choices[0] == choices[4] and choices[4] == choices[8]) or
-      (choices[2] == choices[4] and choices[4] == choices[6])):
-        winner = True
-        printBoard()
+            if self.is_draw():
+                self.print_board()
+                print("🤝 Game Draw")
+                break
 
-if winner:
-    print('Player ' + str(int(firstPlayer + 1)) + ' wins!')
-else:
-    print('Game drawn')
+            self.switch_player()
+
+
+if __name__ == "__main__":
+    game = TicTacToe()
+    game.play()
