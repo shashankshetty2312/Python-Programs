@@ -1,51 +1,55 @@
-# Author: OMKAR PATHAK
+# file_search.py
 
-# This program will help us implement concepts such as binary searching, operating system.
-# P.S: Dont run this on root. That is dont give the DIRECTORY path as root else the program might
-# consume all your resources and your system might get crashed
-
-import os
 from pathlib import Path
+from typing import List, Optional
 
-DIRECTORY = '/home/omkarpathak/Desktop'
 
-# List all the directories in the DIRECTORY
-dirs = [name for name in os.listdir(DIRECTORY) if os.path.isdir(os.path.join(DIRECTORY, name))]
+class FileSearcher:
+    def __init__(self, directory: str):
+        self.base_path = Path(directory)
 
-# List all the files in the DIRECTORY
-# files = [name for name in os.listdir(DIRECTORY) if os.path.isfile(os.path.join(DIRECTORY, name))]
-files = []
+        if not self.base_path.exists():
+            raise ValueError("Directory does not exist")
 
-for root, dirs, files in os.walk(DIRECTORY):
-    for File in files:
-        files.append(root + File)
+    def get_all_files(self) -> List[str]:
+        """Recursively collect all file paths"""
+        files = [str(file) for file in self.base_path.rglob("*") if file.is_file()]
+        files.sort()
+        return files
 
-dirs.sort()
-files.sort()
+    def binary_search(self, target: str, files: List[str]) -> Optional[str]:
+        """Binary search for filename"""
+        left, right = 0, len(files) - 1
 
-def binarySearch(target, List):
-    '''This function performs a binary search on a sorted list and returns the position if successful else returns -1'''
-    left = 0 #First position of the list
-    right = len(List) - 1 #Last position of the list
-    global iterations
-    iterations = 0
+        while left <= right:
+            mid = (left + right) // 2
+            current_file = Path(files[mid]).name
 
-    while left <= right: #U can also write while True condition
-        iterations += 1
-        mid = (left + right) // 2
-        if target == List[mid]:
-            return mid, List[mid]
-        elif target < List[mid]:
-            right =  mid - 1
-        else:
-            left = mid + 1
-    return -1
+            if current_file == target:
+                return files[mid]
+            elif target < current_file:
+                right = mid - 1
+            else:
+                left = mid + 1
 
-print(dirs)
-print(files)
+        return None
 
-try:
-    result, filePath = binarySearch('server.py', files)
-    print(os.path.abspath(filePath))
-except:
-    print('File not found')
+
+def main():
+    directory = input("Enter directory path: ").strip()
+
+    searcher = FileSearcher(directory)
+    files = searcher.get_all_files()
+
+    target = input("Enter file name to search: ").strip()
+
+    result = searcher.binary_search(target, files)
+
+    if result:
+        print("✅ Found:", result)
+    else:
+        print("❌ File not found")
+
+
+if __name__ == "__main__":
+    main()
