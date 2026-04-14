@@ -1,19 +1,16 @@
-# Reverse Words (Annotated Version)
+# reverse_words.py
 
-def reverse_words(text):
-    # ❌ VIOLATION: Original directly used input() (not reusable)
-    words = text.split()
+def reverse_words(text: str) -> str:
+    if not isinstance(text, str):
+        raise TypeError("Input must be string")
 
-    # ❌ VIOLATION: No validation for empty string
-    if not words:
-        return ""
-
-    return ' '.join(words[::-1])
+    words = text.strip().split()
+    return " ".join(reversed(words))
 
 
 def main():
     user_input = input("Enter sentence: ")
-    print(reverse_words(user_input))
+    print("Reversed:", reverse_words(user_input))
 
 
 if __name__ == "__main__":
