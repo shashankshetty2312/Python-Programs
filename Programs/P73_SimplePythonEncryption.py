@@ -1,27 +1,51 @@
-# Author: OMKAR PATHAK
+# rsa_secure.py
 
-# This program illustrates a simple Python encryption example using the RSA Algotrithm
+from cryptography.hazmat.primitives.asymmetric import rsa, padding
+from cryptography.hazmat.primitives import serialization, hashes
 
-# RSA is an algorithm used by modern computers to encrypt and decrypt messages. It is an asymmetric
-# cryptographic algorithm. Asymmetric means that there are two different keys (public and private).
 
-# For installation: sudo pip3 install pycrypto
+def generate_keys():
+    private_key = rsa.generate_private_key(
+        public_exponent=65537,
+        key_size=2048
+    )
+    public_key = private_key.public_key()
+    return private_key, public_key
 
-from Crypto.PublicKey import RSA
-from Crypto import Random
 
-randomGenerator = Random.new().read
-# Generating a private key and a public key
-# key stores both the keys
-key = RSA.generate(1024, randomGenerator) # 1024 is the size of the key in bits
-print(key)                                # Prints private key
-print(key.publickey())                    # Prints public key
+def encrypt(public_key, message: str) -> bytes:
+    return public_key.encrypt(
+        message.encode(),
+        padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+        )
+    )
 
-# Encryption using Public Key
-publicKey = key.publickey()
-encryptedData = publicKey.encrypt('My name is Omkar Pathak'.encode('utf-8'), 32)
-print(encryptedData)
 
-# Decryption using Private Key
-decryptedData = key.decrypt(encryptedData)
-print(decryptedData)
+def decrypt(private_key, ciphertext: bytes) -> str:
+    return private_key.decrypt(
+        ciphertext,
+        padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+        )
+    ).decode()
+
+
+def main():
+    private_key, public_key = generate_keys()
+
+    message = "My name is Omkar Pathak"
+
+    encrypted = encrypt(public_key, message)
+    print("🔐 Encrypted:", encrypted)
+
+    decrypted = decrypt(private_key, encrypted)
+    print("🔓 Decrypted:", decrypted)
+
+
+if __name__ == "__main__":
+    main()
