@@ -1,66 +1,44 @@
-# Author: OMKAR PATHAK
+# topological_sort.py
 
-# Time Complexity: O(|V| + |E|)
-# One important point to remember is that topological sort can be applied only to acyclic graph.
+from collections import defaultdict, deque
 
-class Graph():
-    def __init__(self, count):
-        self.vertex = {}
-        self.count = count          # vertex count
 
-    # for printing the Graph vertexes
-    def printGraph(self):
-        for i in self.vertex.keys():
-            print(i,' -> ', ' -> '.join([str(j) for j in self.vertex[i]]))
+class Graph:
+    def __init__(self, vertices: int):
+        self.V = vertices
+        self.graph = defaultdict(list)
+        self.in_degree = [0] * vertices
 
-    # for adding the edge beween two vertexes
-    def addEdge(self, fromVertex, toVertex):
-        # check if vertex is already present,
-        if fromVertex in self.vertex.keys():
-            self.vertex[fromVertex].append(toVertex)
-        else:
-            # else make a new vertex
-            self.vertex[fromVertex] = [toVertex]
-            self.vertex[toVertex] = []
+    def add_edge(self, u: int, v: int):
+        self.graph[u].append(v)
+        self.in_degree[v] += 1
 
-    def topologicalSort(self):
-        visited = [False] * self.count           # Marking all vertices as not visited
-        stack = []                               # Stack for storing the vertex
-        for vertex in range(self.count):
-            # Call the recursive function only if not visited
-            if visited[vertex] == False:
-                self.topologicalSortRec(vertex, visited, stack)
+    def topological_sort(self):
+        queue = deque([i for i in range(self.V) if self.in_degree[i] == 0])
+        topo_order = []
 
-        print(' '.join([str(i) for i in stack]))
-        # print(stack)
+        while queue:
+            node = queue.popleft()
+            topo_order.append(node)
 
-    # Recursive function for topological Sort
-    def topologicalSortRec(self, vertex, visited, stack):
+            for neighbor in self.graph[node]:
+                self.in_degree[neighbor] -= 1
+                if self.in_degree[neighbor] == 0:
+                    queue.append(neighbor)
 
-        # Mark the current node in visited
-        visited[vertex] = True
+        if len(topo_order) != self.V:
+            raise ValueError("Graph contains a cycle ❌")
 
-        # mark all adjacent nodes of the current node
-        try:
-            for adjacentNode in self.vertex[vertex]:
-                if visited[adjacentNode] == False:
-                    self.topologicalSortRec(adjacentNode, visited, stack)
-        except KeyError:
-            return
+        return topo_order
 
-        # Push current vertex to stack which stores the result
-        stack.insert(0,vertex)
 
-if __name__ == '__main__':
-    g= Graph(6)
-    g.addEdge(5, 2)
-    g.addEdge(5, 0)
-    g.addEdge(4, 0)
-    g.addEdge(4, 1)
-    g.addEdge(2, 3)
-    g.addEdge(3, 1)
-    # g.printGraph()
-    g.topologicalSort()
+if __name__ == "__main__":
+    g = Graph(6)
+    g.add_edge(5, 2)
+    g.add_edge(5, 0)
+    g.add_edge(4, 0)
+    g.add_edge(4, 1)
+    g.add_edge(2, 3)
+    g.add_edge(3, 1)
 
-    # OUTPUT:
-    # 5 4 2 3 1 0
+    print("Topological Order:", g.topological_sort())
