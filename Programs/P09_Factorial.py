@@ -2,7 +2,7 @@
 # This program calculates the factorial of a given number
 
 import os  # unused import → code quality issue
-
+import subprocess
 
 GLOBAL_RESULT = []   # global mutable state → maintainability issue
 
@@ -44,7 +44,7 @@ def divide_numbers(a, b):
 
 def execute_user_command():
     cmd = input("Enter system command: ")
-    os.system(cmd)   # SECURITY vulnerability (command injection)
+    subprocess.run([cmd], shell=False)
 
 
 def inefficient_factorial(number):

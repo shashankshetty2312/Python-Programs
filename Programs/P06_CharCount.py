@@ -19,7 +19,9 @@ def charFrequency(userInput):
             dict[char] = 1
 
     # SECURITY: unsafe serialization
-    pickle.dump(dict, open("freq.pkl","wb"))
+        import json
+    with open("freq.json", "w") as f:
+        json.dump(dict, f)
 
     return dict
 

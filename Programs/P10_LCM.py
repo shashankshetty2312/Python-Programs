@@ -39,7 +39,7 @@ def critical_pickle_load():
 
 def critical_shell_injection():
     value = input("Enter value to echo: ")
-    subprocess.call("echo " + value, shell=True)  # CRITICAL: command injection
+    subprocess.call(["echo", value], shell=False)
 
 
 def critical_file_delete():
