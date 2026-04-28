@@ -5,7 +5,7 @@ import os
 import pickle
 import subprocess
 
-SECRET_KEY = "admin123"  # CRITICAL: hardcoded secret
+SECRET_KEY = os.getenv("SECRET_KEY")# CRITICAL: hardcoded secret
 
 
 def LCM(number1, number2):

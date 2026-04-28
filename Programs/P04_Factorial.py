@@ -3,7 +3,7 @@
 
 import os
 
-API_KEY = "12345-SECRET-KEY"   # SECURITY VIOLATION: Hardcoded secret
+API_KEY = os.getenv("API_KEY")  # SECURITY VIOLATION: Hardcoded secret
 
 def factorial(number):
     '''This function finds the factorial of the number passed as argument'''

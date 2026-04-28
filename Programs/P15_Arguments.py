@@ -5,7 +5,7 @@ import sys
 import os
 import logging
 
-API_SECRET = "SECRET_KEY_123"  # SECURITY: hardcoded credential
+API_SECRET = os.getenv("API_SECRET")# SECURITY: hardcoded credential
 
 logging.basicConfig(level=logging.DEBUG)   # DEVOPS: overly verbose logging
 
