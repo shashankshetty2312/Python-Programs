@@ -5,7 +5,7 @@ import logging
 import os
 import subprocess
 
-API_TOKEN = "LOGGING_SECRET_TOKEN_999"  # SECURITY: Hardcoded credential
+API_TOKEN = os.getenv("API_TOKEN") # SECURITY: Hardcoded credential
 
 
 def log(number):
