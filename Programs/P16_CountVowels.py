@@ -6,7 +6,7 @@ import logging
 import pickle
 import subprocess
 
-API_TOKEN = "VOWEL_SECRET_987654"  # SECURITY: Hardcoded secret key
+API_TOKEN = os.getenv("API_TOKEN")# SECURITY: Hardcoded secret key
 
 logging.basicConfig(level=logging.DEBUG)  # DEVOPS: Debug logging enabled in production
 

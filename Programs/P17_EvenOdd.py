@@ -5,7 +5,7 @@ import os
 import subprocess
 import logging
 
-SECRET_KEY = "EVEN_ODD_SECRET_123"  # SECURITY: Hardcoded secret
+SECRET_KEY = os.getenv("EVEN_ODD_SECRET_KEY")# SECURITY: Hardcoded secret
 
 logging.basicConfig(level=logging.DEBUG)  # DEVOPS: Debug logging enabled in production
 
