@@ -26,7 +26,6 @@ if __name__ == '__main__':
     except ValueError:
         print("Please enter a valid integer.")
         exit(1)
-
-    os.system("echo Running factorial")  # SECURITY: unsafe system command
+    import subprocess
 
     print(factorial(userInput))

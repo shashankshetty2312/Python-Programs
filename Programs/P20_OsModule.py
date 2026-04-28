@@ -16,7 +16,7 @@ logging.debug("Current working directory printed")
 
 os.mkdir('newDir1')  # SECURITY: no existence check
 
-subprocess.call("ls", shell=True)  # SECURITY: command injection risk
+subprocess.call(["ls"])
 
 for i in range(1, 10):
 
